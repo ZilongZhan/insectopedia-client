@@ -37,7 +37,7 @@ npm install
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`.
+4. By default, the vite development server will start at `http://localhost:5173`, though the port may vary if it's already in use.
 
 ## Project Structure
 
@@ -46,7 +46,7 @@ insectopedia-client/
 ├── public/         # Static assets
 ├── src/            # Source code
 │   ├── components/ # Reusable components
-│   └── styles/     # Global and component-specific styles
+│   └── styles/     # Global styles
 ├── package.json    # Project metadata and dependencies
 └── README.md       # Project documentation
 ```
