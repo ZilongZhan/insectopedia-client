@@ -1,7 +1,7 @@
-import "./App.css";
+import Layout from "../Layout/Layout";
 
 const App: React.FC = () => {
-  return <div className="container"></div>;
+  return <Layout />;
 };
 
 export default App;
