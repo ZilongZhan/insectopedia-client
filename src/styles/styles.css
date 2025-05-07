@@ -5,6 +5,12 @@
 }
 
 body {
-  background-color: rgb(244, 244, 244);
+  background-color: #efefef;
   margin: 0;
+  font-family: "Noto Sans Thai Looped", sans-serif;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
