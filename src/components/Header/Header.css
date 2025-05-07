@@ -1,0 +1,13 @@
+.main-header__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0 10px 5px 10px;
+}
+
+.main-header__banner {
+  height: 5vh;
+  width: 100%;
+  object-position: 40% 40%;
+  object-fit: cover;
+}
