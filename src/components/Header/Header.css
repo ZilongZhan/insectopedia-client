@@ -8,6 +8,6 @@
 .main-header__banner {
   height: 5vh;
   width: 100%;
-  object-position: 40% 40%;
+  object-position: 40% 35%;
   object-fit: cover;
 }
