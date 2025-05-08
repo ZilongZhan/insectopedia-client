@@ -9,7 +9,7 @@ export default defineConfig({
     reporters: "verbose",
     coverage: {
       provider: "v8",
-      reporter: ["html", "lcov"],
+      reporter: ["text", "html", "lcov"],
       include: ["**/*.tsx", "**/*.ts"],
       exclude: [
         "src/main.tsx",
