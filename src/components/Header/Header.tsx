@@ -6,8 +6,10 @@ const Header: React.FC = () => {
       <h1 className="main-header__title">Insectopedia</h1>
       <img
         className="main-header__banner"
-        src="/images/banner.png"
+        src="/images/banner.webp"
         alt="A monarch butterfly resting on a flower"
+        height={700}
+        width={466}
       />
     </header>
   );
