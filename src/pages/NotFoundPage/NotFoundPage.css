@@ -1,0 +1,10 @@
+.not-found-icon {
+  width: 120px;
+}
+
+.not-found-message {
+  font-weight: bold;
+  width: 14rem;
+  text-align: center;
+  font-size: 1rem;
+}
