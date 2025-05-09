@@ -1,0 +1,30 @@
+.active {
+  fill: #f68522;
+  font-weight: bold;
+}
+
+.navigator {
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  color: #000000;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navigator__link {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigator__link-icon {
+  width: 40px;
+}
+
+.navigator__link-label {
+  font-size: 1rem;
+  line-height: 1rem;
+  text-align: center;
+}
