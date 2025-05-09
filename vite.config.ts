@@ -11,13 +11,7 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "html", "lcov"],
       include: ["**/*.tsx", "**/*.ts"],
-      exclude: [
-        "src/main.tsx",
-        "**/*.d.ts",
-        "**/types.ts",
-        "**/App.tsx",
-        "**/*.config.*",
-      ],
+      exclude: ["src/main.tsx", "**/*.d.ts", "**/types.ts", "**/*.config.*"],
       reportsDirectory: "coverage",
     },
     browser: {
