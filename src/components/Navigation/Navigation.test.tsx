@@ -1,7 +1,7 @@
 import { render } from "vitest-browser-react";
-import Navigation from "./Navigation";
 import { MemoryRouter } from "react-router";
 import { page } from "@vitest/browser/context";
+import Navigation from "./Navigation";
 
 describe("Given the Navigation component", () => {
   describe("When it renders", () => {

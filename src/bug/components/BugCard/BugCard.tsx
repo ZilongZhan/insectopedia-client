@@ -1,5 +1,5 @@
-import StarSvg from "../../components/shared/StarSvg/StarSvg";
-import type { Bug } from "../types";
+import StarSvg from "../../../components/shared/StarSvg/StarSvg";
+import type { Bug } from "../../types";
 
 import "./BugCard.css";
 

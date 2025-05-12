@@ -1,6 +1,6 @@
 import { render } from "vitest-browser-react";
-import GrasshopperSvg from "./GrasshopperSvg";
 import { page } from "@vitest/browser/context";
+import GrasshopperSvg from "./GrasshopperSvg";
 
 describe("Given the GrasshopperSvg component", () => {
   describe("When it renders", () => {

@@ -1,7 +1,7 @@
 import { render } from "vitest-browser-react";
 import { page } from "@vitest/browser/context";
-import Layout from "./Layout";
 import { MemoryRouter } from "react-router";
+import Layout from "./Layout";
 
 describe("Given the Layout component", () => {
   describe("When it renders", () => {

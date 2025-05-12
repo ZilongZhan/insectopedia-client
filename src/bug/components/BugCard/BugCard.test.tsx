@@ -1,7 +1,7 @@
 import { render } from "vitest-browser-react";
-import BugCard from "./BugCard";
-import { insect1 } from "../fixtures";
 import { page } from "@vitest/browser/context";
+import BugCard from "./BugCard";
+import { insect1 } from "../../fixtures";
 
 describe("Given the BugCard component", () => {
   describe("When it receives insect 1", () => {
