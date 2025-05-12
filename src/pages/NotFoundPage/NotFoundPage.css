@@ -1,8 +1,15 @@
-.not-found-icon {
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: calc(100vh / 4);
+}
+
+.not-found-page__icon {
   width: 120px;
 }
 
-.not-found-message {
+.not-found-page__message {
   font-weight: bold;
   width: 14rem;
   text-align: center;

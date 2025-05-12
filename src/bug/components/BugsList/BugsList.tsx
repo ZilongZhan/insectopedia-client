@@ -8,7 +8,9 @@ interface BugsListProps {
 }
 
 const BugsList: React.FC<BugsListProps> = ({ bugs }) => {
-  return (
+  const hasBugs = bugs.length > 0;
+
+  return hasBugs ? (
     <ul className="bugs">
       {bugs.map((bug) => (
         <li key={bug.id}>
@@ -16,6 +18,10 @@ const BugsList: React.FC<BugsListProps> = ({ bugs }) => {
         </li>
       ))}
     </ul>
+  ) : (
+    <span className="no-bugs-message">
+      There are no bugs currently... try adding some!
+    </span>
   );
 };
 
