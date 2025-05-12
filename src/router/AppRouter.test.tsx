@@ -33,4 +33,18 @@ describe("Given the AppRouter component", () => {
       await expect.element(notFoundMessage).toBeInTheDocument();
     });
   });
+
+  describe("When it renders on path /home", () => {
+    test("Then it should show 'Home' inside a heading", () => {
+      render(
+        <MemoryRouter initialEntries={["/home"]}>
+          <AppRouter />
+        </MemoryRouter>,
+      );
+
+      const pageTitle = page.getByRole("heading", { name: /home/i });
+
+      expect(pageTitle).toBeInTheDocument();
+    });
+  });
 });

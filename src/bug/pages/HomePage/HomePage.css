@@ -1,0 +1,22 @@
+.title-container {
+  display: flex;
+  gap: 10px;
+}
+
+.title-container__page-title {
+  color: #252525;
+  margin: 0;
+}
+
+.title-container__icon {
+  fill: #f68522;
+  width: 50px;
+}
+
+.bugs-total {
+  align-self: flex-start;
+}
+
+.bugs-total__label {
+  font-weight: bold;
+}
