@@ -2,8 +2,9 @@ import { useCallback, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import BugsClient from "../client/BugsClient";
 import { renderBugsInfoActionCreator } from "../slice/bugSlice";
+import type { useBugsStructure } from "./types";
 
-const useBugs = () => {
+const useBugs = (): useBugsStructure => {
   const bugsInfo = useAppSelector((state) => state.bugsReducer.bugsInfo);
   const dispatch = useAppDispatch();
 
