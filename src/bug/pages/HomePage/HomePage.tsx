@@ -1,12 +1,23 @@
+import { useEffect } from "react";
 import GrasshopperSvg from "../../../components/shared/GrasshopperSvg/GrasshopperSvg";
 import BugsList from "../../components/BugsList/BugsList";
-import type { Bug } from "../../types";
+import useBugs from "../../hooks/useBugs";
 
 import "./HomePage.css";
+import { useSearchParams } from "react-router";
 
 const HomePage: React.FC = () => {
-  const bugs: Bug[] = [];
-  const bugsTotal = 0;
+  const {
+    bugsInfo: { bugs, bugsTotal },
+    renderBugsInfo,
+  } = useBugs();
+  const [searchParams] = useSearchParams();
+
+  const pageNumber = Number(searchParams.get("page")) || 1;
+
+  useEffect(() => {
+    renderBugsInfo(pageNumber);
+  }, [renderBugsInfo, pageNumber]);
 
   return (
     <>

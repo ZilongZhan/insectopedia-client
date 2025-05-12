@@ -5,15 +5,19 @@ import "./BugCard.css";
 
 interface BugCardProps {
   bug: Bug;
+  index: number;
 }
 const BugCard: React.FC<BugCardProps> = ({
   bug: { imageUrl, imageAlt, isFavorite, name, scientificName },
+  index,
 }) => {
   const modifier = isFavorite ? " favorite-icon--true" : "";
+  const loadingMode = index > 6 ? "lazy" : "eager";
 
   return (
     <article className="bug">
       <img
+        loading={loadingMode}
         className="bug__image"
         src={imageUrl}
         alt={imageAlt}
