@@ -1,6 +1,6 @@
 import { render } from "vitest-browser-react";
-import StarSvg from "./StarSvg";
 import { page } from "@vitest/browser/context";
+import StarSvg from "./StarSvg";
 
 describe("Given the StarSvg component", () => {
   describe("When it renders", () => {

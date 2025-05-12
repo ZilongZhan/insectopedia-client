@@ -1,7 +1,7 @@
 import { render } from "vitest-browser-react";
+import { page } from "@vitest/browser/context";
 import BugsList from "./BugsList";
 import { insect1, insect2, insect3, insect4, insect5 } from "../../fixtures";
-import { page } from "@vitest/browser/context";
 
 describe("Given the BugsList component", () => {
   describe("When it receives insect 1 to 5", () => {
