@@ -6,7 +6,7 @@ import type { BugsClientStructure } from "./types";
 class BugsClient implements BugsClientStructure {
   private readonly apiUrl = import.meta.env.VITE_API_URL;
 
-  public async getBugsInfo(pageNumber: number): Promise<BugsInfo> {
+  public async getBugsInfo(pageNumber = 1): Promise<BugsInfo> {
     const response = await fetch(
       `${this.apiUrl}/bugs?pageNumber=${pageNumber}`,
     );
