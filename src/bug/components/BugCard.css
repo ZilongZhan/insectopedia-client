@@ -1,0 +1,41 @@
+.bug {
+  display: flex;
+  flex-direction: column;
+  background-color: #d9d9d9;
+  border-radius: 2px;
+}
+
+.bug__image {
+  width: 100%;
+  border-radius: 2px 2px 0 0;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  padding: 7px;
+  gap: 4px;
+}
+
+.bug__latin-name {
+  font-size: 0.9rem;
+  color: #535353;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.favorite-icon {
+  width: 25px;
+  fill: none;
+  stroke: #848484;
+  stroke-width: 2px;
+  align-self: flex-end;
+}
+
+.favorite-icon--true {
+  fill: #f2ce2d;
+  stroke: none;
+}
