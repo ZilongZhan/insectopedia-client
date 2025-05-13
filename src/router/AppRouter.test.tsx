@@ -2,13 +2,17 @@ import { render } from "vitest-browser-react";
 import { MemoryRouter } from "react-router";
 import AppRouter from "./AppRouter";
 import { page } from "@vitest/browser/context";
+import store from "../store/store";
+import { Provider } from "react-redux";
 
 describe("Given the AppRouter component", () => {
   describe("When it renders on non-existent path /test", () => {
     test("Then it should show silhouette of a mosquito next to the number 404", async () => {
       render(
         <MemoryRouter initialEntries={["/test"]}>
-          <AppRouter />
+          <Provider store={store}>
+            <AppRouter />
+          </Provider>
         </MemoryRouter>,
       );
 
@@ -22,7 +26,9 @@ describe("Given the AppRouter component", () => {
     test("Then it should show 'The page you're looking for doesn't exist'", async () => {
       render(
         <MemoryRouter initialEntries={["/test"]}>
-          <AppRouter />
+          <Provider store={store}>
+            <AppRouter />
+          </Provider>
         </MemoryRouter>,
       );
 
@@ -38,7 +44,9 @@ describe("Given the AppRouter component", () => {
     test("Then it should show 'Home' inside a heading", () => {
       render(
         <MemoryRouter initialEntries={["/home"]}>
-          <AppRouter />
+          <Provider store={store}>
+            <AppRouter />
+          </Provider>
         </MemoryRouter>,
       );
 

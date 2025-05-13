@@ -9,3 +9,8 @@ export interface Bug {
   isFavorite: boolean;
   taxonomy: [phylum: string, className: string, order: string];
 }
+
+export interface BugsInfo {
+  bugs: Bug[];
+  bugsTotal: number;
+}

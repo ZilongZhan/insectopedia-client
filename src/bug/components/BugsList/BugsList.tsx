@@ -12,9 +12,9 @@ const BugsList: React.FC<BugsListProps> = ({ bugs }) => {
 
   return hasBugs ? (
     <ul className="bugs">
-      {bugs.map((bug) => (
+      {bugs.map((bug, index) => (
         <li key={bug.id}>
-          <BugCard bug={bug} />
+          <BugCard bug={bug} index={index} />
         </li>
       ))}
     </ul>

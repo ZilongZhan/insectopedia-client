@@ -6,7 +6,7 @@ import { insect1 } from "../../fixtures";
 describe("Given the BugCard component", () => {
   describe("When it receives insect 1", () => {
     test("Then it should show portrait of the Insect One (Insecta Oneus) in its natural glory", () => {
-      render(<BugCard bug={insect1} />);
+      render(<BugCard bug={insect1} index={0} />);
 
       const bugImage = page.getByAltText(
         "Portrait of the Insect One (Insecta oneus) in its natural glory",
@@ -16,7 +16,7 @@ describe("Given the BugCard component", () => {
     });
 
     test("Then it should show 'Insect One' inside a heading", () => {
-      render(<BugCard bug={insect1} />);
+      render(<BugCard bug={insect1} index={0} />);
 
       const bugName = page.getByRole("heading", { name: /insect one/i });
 
@@ -24,7 +24,7 @@ describe("Given the BugCard component", () => {
     });
 
     test("Then it should show 'Insecta oneus'", () => {
-      render(<BugCard bug={insect1} />);
+      render(<BugCard bug={insect1} index={0} />);
 
       const bugLatinName = page.getByText("Insecta oneus");
 
@@ -32,7 +32,7 @@ describe("Given the BugCard component", () => {
     });
 
     test("Then it should show icon of a 5 pointed star", () => {
-      render(<BugCard bug={insect1} />);
+      render(<BugCard bug={insect1} index={0} />);
 
       const StarSvg = page.getByRole("img", {
         name: /icon of a 5 pointed star/i,
