@@ -1,8 +1,9 @@
-import { screen, render } from "@testing-library/react";
-import HomePage from "./HomePage";
+import { render } from "vitest-browser-react";
+import { page } from "@vitest/browser/context";
+import { MemoryRouter } from "react-router";
 import { Provider } from "react-redux";
 import store from "../../../store/store";
-import { MemoryRouter } from "react-router";
+import HomePage from "./HomePage";
 
 describe("Given the HomePage component", () => {
   describe("When it renders", () => {
@@ -15,7 +16,7 @@ describe("Given the HomePage component", () => {
         </MemoryRouter>,
       );
 
-      const pageTitle = screen.getByRole("heading", { name: /home/i });
+      const pageTitle = page.getByRole("heading", { name: /home/i });
 
       expect(pageTitle).toBeInTheDocument();
     });

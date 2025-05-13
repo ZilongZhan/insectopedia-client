@@ -1,5 +1,5 @@
 import { http } from "msw";
-import { server } from "../../../mocks/node";
+import { server } from "../../../mocks/browser";
 import { insectDtoCollecion } from "../../dto/fixtures";
 import { mapBugsDtoToBugs } from "../../dto/mappers";
 import type { BugDto } from "../../dto/types";
