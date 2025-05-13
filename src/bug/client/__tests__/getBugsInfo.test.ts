@@ -1,6 +1,6 @@
 import { http } from "msw";
 import { server } from "../../../mocks/browser";
-import { insectDtoCollecion } from "../../dto/fixtures";
+import { insectsDtoCollection } from "../../dto/fixtures";
 import { mapBugsDtoToBugs } from "../../dto/mappers";
 import type { BugDto } from "../../dto/types";
 import BugsClient from "../BugsClient";
@@ -10,10 +10,10 @@ describe("Given the getBugsInfo method of BugsClient", () => {
 
   describe("When it is called", () => {
     test("Then it should return insects 1 to 16 and number 17 as total number of bugs", async () => {
-      const expectedBugsTotal = insectDtoCollecion.length;
+      const expectedBugsTotal = insectsDtoCollection.length;
       const bugsPerPage = 16;
       const expectedBugs = mapBugsDtoToBugs(
-        insectDtoCollecion.slice(0, bugsPerPage),
+        insectsDtoCollection.slice(0, bugsPerPage),
       );
 
       const { bugs, bugsTotal } = await bugsClient.getBugsInfo();
@@ -49,7 +49,7 @@ describe("Given the getBugsInfo method of BugsClient", () => {
     });
 
     test("Then it should return 10 as total number of posts", async () => {
-      const expectedBugsTotal = insectDtoCollecion.length;
+      const expectedBugsTotal = insectsDtoCollection.length;
 
       const { bugsTotal } = await bugsClient.getBugsInfo(pageNumber);
 

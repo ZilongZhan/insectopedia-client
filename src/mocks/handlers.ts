@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import { insectDtoCollecion } from "../bug/dto/fixtures";
+import { insectsDtoCollection } from "../bug/dto/fixtures";
 import type { BugsInfoDto } from "../bug/dto/types";
 import checkUrlExists from "./checkUrlExists/checkUrlExists";
 
@@ -13,19 +13,19 @@ export const handlers = [
 
     const pageNumber = Number(url.searchParams.get("pageNumber"));
 
-    const bugsTotal = insectDtoCollecion.length;
+    const bugsTotal = insectsDtoCollection.length;
 
     const pages = [];
 
     for (
       let bugsCount = 0;
-      bugsCount < insectDtoCollecion.length;
+      bugsCount < insectsDtoCollection.length;
       bugsCount += 16
     ) {
-      pages.push(insectDtoCollecion.slice(bugsCount, bugsCount + 16));
+      pages.push(insectsDtoCollection.slice(bugsCount, bugsCount + 16));
     }
 
-    const doesPageExist = pageNumber <= pages.length;
+    const doesPageExist = pageNumber < pages.length;
 
     const bugs = doesPageExist ? pages[pageNumber - 1] : [];
 
