@@ -221,7 +221,7 @@ export const insect17Dto: BugDto = {
   order: "PlaceholderOrder",
 };
 
-export const insectDtoCollecion = [
+export const insectsDtoCollection = [
   insect1Dto,
   insect2Dto,
   insect3Dto,

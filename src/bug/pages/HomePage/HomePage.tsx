@@ -1,10 +1,10 @@
 import { useEffect } from "react";
+import { useSearchParams } from "react-router";
 import GrasshopperSvg from "../../../components/shared/GrasshopperSvg/GrasshopperSvg";
 import BugsList from "../../components/BugsList/BugsList";
-import useBugs from "../../hooks/useBugs";
+import useBugs from "../../hooks/useBugs/useBugs";
 
 import "./HomePage.css";
-import { useSearchParams } from "react-router";
 
 const HomePage: React.FC = () => {
   const {
