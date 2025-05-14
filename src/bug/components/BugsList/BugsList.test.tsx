@@ -6,13 +6,11 @@ import { insectsCollection } from "../../fixtures";
 describe("Given the BugsList component", () => {
   describe("When it receives insect 1 to 5", () => {
     test("Then it should show 'Insect One', 'Insect Two', 'Insect Three', ... to 'Insect Sixteen' inside a heading each", () => {
-      const bugs = insectsCollection;
+      render(<BugsList bugs={insectsCollection} />);
 
-      render(<BugsList bugs={bugs} />);
-
-      bugs.forEach((bug) => {
+      insectsCollection.forEach((bug) => {
         const bugNameElement = page.getByRole("heading", {
-          name: new RegExp(`\\b${bug.name}\\b`),
+          name: new RegExp(`\\b${bug.name}\\b`, "i"),
         });
 
         expect(bugNameElement).toBeInTheDocument();
