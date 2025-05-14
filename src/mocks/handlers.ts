@@ -25,7 +25,7 @@ export const handlers = [
       pages.push(insectsDtoCollection.slice(bugsCount, bugsCount + 16));
     }
 
-    const doesPageExist = pageNumber < pages.length;
+    const doesPageExist = pageNumber <= pages.length;
 
     const bugs = doesPageExist ? pages[pageNumber - 1] : [];
 

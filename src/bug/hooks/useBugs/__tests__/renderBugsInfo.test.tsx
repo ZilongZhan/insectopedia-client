@@ -12,7 +12,7 @@ describe("Given the renderBugsInfo function", () => {
     test("Then it should set insect 1 to 16 as bugs and number 17 as total bugs", async () => {
       const pageNumber = 1;
 
-      const expectedBugs = insectsCollection.slice(0, bugsPerPage);
+      const expectedBugs = insectsCollection.slice(0, bugsPerPage * pageNumber);
 
       const { result } = renderHook(() => useBugs(), {
         wrapper: AllContextsProvider,
@@ -36,7 +36,7 @@ describe("Given the renderBugsInfo function", () => {
 
       const expectedBugs = insectsCollection.slice(
         secondPageInitialPosition,
-        bugsPerPage,
+        bugsPerPage * pageNumber,
       );
 
       const { result } = renderHook(() => useBugs(), {
