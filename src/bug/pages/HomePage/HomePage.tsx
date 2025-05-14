@@ -3,11 +3,13 @@ import { useSearchParams } from "react-router";
 import GrasshopperSvg from "../../../components/shared/GrasshopperSvg/GrasshopperSvg";
 import BugsList from "../../components/BugsList/BugsList";
 import useBugs from "../../hooks/useBugs/useBugs";
+import Paginator from "../../components/Paginator/Paginator";
 
 import "./HomePage.css";
 
 const HomePage: React.FC = () => {
   const {
+    bugsInfo,
     bugsInfo: { bugs, bugsTotal },
     renderBugsInfo,
   } = useBugs();
@@ -34,6 +36,7 @@ const HomePage: React.FC = () => {
         <span>{`${bugs.length} of ${bugsTotal}`}</span>
       </div>
       <BugsList bugs={bugs} />
+      <Paginator pageNumber={pageNumber} bugsInfo={bugsInfo} />
     </>
   );
 };

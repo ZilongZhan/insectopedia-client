@@ -1,0 +1,30 @@
+.paginator {
+  display: flex;
+  gap: 20px;
+}
+
+.paginator__link {
+  background-color: #d9d9d9;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+.paginator__link--disabled {
+  visibility: hidden;
+}
+
+.paginator__list {
+  background-color: #d9d9d9;
+  padding: 3px 10px;
+  display: flex;
+  gap: 20px;
+  border-radius: 2px;
+}
+
+.paginator__indicator {
+  text-align: center;
+}
+
+.paginator__indicator--active {
+  font-weight: bold;
+}
