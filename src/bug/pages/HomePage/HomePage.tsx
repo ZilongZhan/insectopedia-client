@@ -8,6 +8,8 @@ import Paginator from "../../components/Paginator/Paginator";
 import "./HomePage.css";
 
 const HomePage: React.FC = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
   const {
     bugsInfo,
     bugsInfo: { bugs, bugsTotal },
