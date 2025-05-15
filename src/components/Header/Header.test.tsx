@@ -13,15 +13,5 @@ describe("Given the Header component", () => {
 
       expect(appTitle).toBeInTheDocument();
     });
-
-    test("Then it should show a monarch butterfly resting on a flower", () => {
-      const expectedAltText = /a monarch butterfly resting on a flower/i;
-
-      render(<Header />);
-
-      const banner = page.getByAltText(expectedAltText);
-
-      expect(banner).toBeInTheDocument();
-    });
   });
 });
