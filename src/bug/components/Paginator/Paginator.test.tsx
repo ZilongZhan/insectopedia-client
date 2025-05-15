@@ -1,9 +1,9 @@
 import { render } from "vitest-browser-react";
+import { MemoryRouter } from "react-router";
+import { page } from "@vitest/browser/context";
 import { insectsCollection } from "../../fixtures";
 import type { BugsInfo } from "../../types";
 import Paginator from "./Paginator";
-import { page } from "@vitest/browser/context";
-import { MemoryRouter } from "react-router";
 
 describe("Given the Paginator component", () => {
   describe("When it receives page number 1 and 16 bugs with 17 total bugs", () => {
@@ -25,16 +25,6 @@ describe("Given the Paginator component", () => {
       const nextPageLink = page.getByRole("link", { name: linkAriaLabel });
 
       expect(nextPageLink).toBeInTheDocument();
-    });
-
-    test("Then the current page should be 1", () => {
-      render(<Paginator pageNumber={pageNumber} bugsInfo={bugsInfo} />, {
-        wrapper: MemoryRouter,
-      });
-
-      const currentPageIndicator = page.getByLabelText(/current page/i);
-
-      expect(currentPageIndicator).toBeInTheDocument();
     });
   });
 
@@ -62,18 +52,6 @@ describe("Given the Paginator component", () => {
       });
 
       expect(previousPageLink).toBeInTheDocument();
-    });
-
-    test("Then the current page should be 2", () => {
-      const currentPageAriaLabel = /current page/i;
-
-      render(<Paginator pageNumber={pageNumber} bugsInfo={bugsInfo} />, {
-        wrapper: MemoryRouter,
-      });
-
-      const currentPageIndicator = page.getByLabelText(currentPageAriaLabel);
-
-      expect(currentPageIndicator).toBeInTheDocument();
     });
   });
 });

@@ -1,5 +1,4 @@
-import type { ReactElement } from "react";
-import type { BugsInfo } from "../types";
+import type { BugFormData, BugsInfo } from "../types";
 
 export interface UseBugsStructure {
   bugsInfo: BugsInfo;
@@ -7,9 +6,16 @@ export interface UseBugsStructure {
 }
 
 export interface UsePaginatorStructure {
-  renderLink: (pageNumber: number, label: string) => ReactElement | undefined;
-  renderIndicator: (
-    pageNumber: number,
-    isCurrent?: boolean,
-  ) => ReactElement | undefined;
+  doesPageExist: (pageNumber: number) => boolean;
+}
+
+export interface UseFormStructure {
+  bugFormData: BugFormData;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  handleOnChange: (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => void;
+  isValidData: boolean;
 }

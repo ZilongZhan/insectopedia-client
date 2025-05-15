@@ -14,3 +14,9 @@ export interface BugsInfo {
   bugs: Bug[];
   bugsTotal: number;
 }
+
+export type BugFormData = Omit<Bug, "id" | "imageAlt" | "taxonomy"> & {
+  phylum: string;
+  className: string;
+  order: string;
+};
