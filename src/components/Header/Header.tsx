@@ -5,9 +5,10 @@ const Header: React.FC = () => {
     <header>
       <h1 className="main-header__title">Insectopedia</h1>
       <img
+        aria-hidden={true}
         className="main-header__banner"
         src="/images/banner.webp"
-        alt="A monarch butterfly resting on a flower"
+        alt=""
         height={700}
         width={466}
       />
