@@ -1,5 +1,10 @@
 import type { BugsInfo } from "../../types";
-import usePaginator from "../../hooks/usePaginator/usePaginator";
+import PaginatorIndicator, {
+  type PaginatorIndicatorProps,
+} from "./subcomponents/PaginatorIndicator/PaginatorIndicator";
+import PaginatorLink, {
+  type PaginatorLinkProps,
+} from "./subcomponents/PaginatorLink/PaginatorLink";
 
 import "./Paginator.css";
 
@@ -8,31 +13,47 @@ interface PaginatorProps {
   bugsInfo: BugsInfo;
 }
 
-const Paginator: React.FC<PaginatorProps> = ({
+interface PaginatorSubcomponents {
+  Indicator: React.FC<PaginatorIndicatorProps>;
+  Link: React.FC<PaginatorLinkProps>;
+}
+
+const Paginator: React.FC<PaginatorProps> & PaginatorSubcomponents = ({
   pageNumber,
   bugsInfo: { bugs, bugsTotal },
 }) => {
   const bugsPerPage = bugs.length;
   const pagesTotal = Math.ceil(bugsTotal / bugsPerPage);
 
-  const { renderIndicator, renderLink } = usePaginator(pagesTotal);
-
   const previousPage = pageNumber - 1;
   const nextPage = pageNumber + 1;
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
-
   return (
     <div className="paginator">
-      {renderLink(previousPage, "<")}
+      <Paginator.Link
+        pageNumber={previousPage}
+        pagesTotal={pagesTotal}
+        label="<"
+      />
+
       <ul className="paginator__list">
-        {renderIndicator(previousPage)}
-        {renderIndicator(pageNumber, true)}
-        {renderIndicator(nextPage)}
+        <Paginator.Indicator
+          pageNumber={previousPage}
+          pagesTotal={pagesTotal}
+        />
+        <Paginator.Indicator
+          pageNumber={pageNumber}
+          pagesTotal={pagesTotal}
+          isCurrent={true}
+        />
+        <Paginator.Indicator pageNumber={nextPage} pagesTotal={pagesTotal} />
       </ul>
-      {renderLink(nextPage, ">")}
+      <Paginator.Link pageNumber={nextPage} pagesTotal={pagesTotal} label=">" />
     </div>
   );
 };
+
+Paginator.Link = PaginatorLink;
+Paginator.Indicator = PaginatorIndicator;
 
 export default Paginator;
