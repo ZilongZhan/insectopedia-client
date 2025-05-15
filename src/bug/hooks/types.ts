@@ -1,3 +1,4 @@
+import type { Class } from "../../data/types";
 import type { BugFormData, BugsInfo } from "../types";
 
 export interface UseBugsStructure {
@@ -18,4 +19,6 @@ export interface UseFormStructure {
     >,
   ) => void;
   isValidData: boolean;
+  classOptions: Class[];
+  orderOptions: string[];
 }
