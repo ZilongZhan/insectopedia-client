@@ -1,5 +1,11 @@
-import type { BugsInfo } from "../types";
+import type { BugDto } from "../dto/types";
+import type { Bug, BugFormData, BugsInfo } from "../types";
 
 export interface BugsClientStructure {
   getBugsInfo: (pageNumber?: number) => Promise<BugsInfo>;
+  addBug: (bugFormData: BugFormData) => Promise<Bug>;
+}
+
+export interface BugResponse {
+  bug: BugDto;
 }

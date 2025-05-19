@@ -19,6 +19,7 @@ import {
   insectsDtoCollection,
 } from "./dto/fixtures";
 import { mapBugDtoToBug, mapBugsDtoToBugs } from "./dto/mappers";
+import type { BugFormData } from "./types";
 
 export const insect1 = mapBugDtoToBug(insect1Dto);
 export const insect2 = mapBugDtoToBug(insect2Dto);
@@ -39,3 +40,39 @@ export const insect16 = mapBugDtoToBug(insect16Dto);
 export const insect17 = mapBugDtoToBug(insect17Dto);
 
 export const insectsCollection = mapBugsDtoToBugs(insectsDtoCollection);
+
+export const insect1FormData: BugFormData = {
+  name: "Insect One",
+  scientificName: "Insecta oneus",
+  imageUrl: "/images/insect1.jpg",
+  description: "Description of Insect One",
+  isDangerous: false,
+  isFavorite: false,
+  phylum: "PlaceholderPhylum",
+  className: "PlaceholderClass",
+  order: "PlaceholderOrder",
+};
+
+export const insect2FormData: BugFormData = {
+  name: "Insect Two",
+  scientificName: "Insecta twous",
+  imageUrl: "/images/insect2.jpg",
+  description: "Description of Insect Two",
+  isDangerous: true,
+  isFavorite: false,
+  phylum: "PlaceholderPhylum",
+  className: "PlaceholderClass",
+  order: "PlaceholderOrder",
+};
+
+export const insect3FormData: BugFormData = {
+  name: "Insect Three",
+  scientificName: "Insecta threus",
+  imageUrl: "/images/insect3.jpg",
+  description: "Description of Insecto Three",
+  isDangerous: false,
+  isFavorite: true,
+  phylum: "PlaceholderPhylum",
+  className: "PlaceholderClass",
+  order: "PlaceholderOrder",
+};
