@@ -41,7 +41,7 @@ export const insect3Dto: BugDto = {
 
 export const insect4Dto: BugDto = {
   _id: "bug-4",
-  commonName: "Insect Four",
+  commonName: "Housefly",
   latinName: "Insecta fourus",
   imageUrl: "/images/insect4.jpg",
   description: "Description of Insect Four",

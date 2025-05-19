@@ -1,13 +1,14 @@
 import { render } from "vitest-browser-react";
 import { page, userEvent } from "@vitest/browser/context";
 import BugForm from "./BugForm";
+import AllContextsProvider from "../../../test-utils/AllContextsProvider";
 
 describe("Given the BugForm component", () => {
   const user = userEvent.setup();
 
   describe("When it renders", () => {
     test("Then it should show a 'Common name' input", () => {
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const nameInput = page.getByLabelText(/common name/i);
 
@@ -15,7 +16,7 @@ describe("Given the BugForm component", () => {
     });
 
     test("Then it should show a disabled 'Send report' button", () => {
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const submitButton = page.getByRole("button", { name: /send report/i });
 
@@ -24,7 +25,7 @@ describe("Given the BugForm component", () => {
     });
 
     test("Then it should show a 'Add to favorites' input", () => {
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const isFavoriteInput = page.getByLabelText(/add to favorites/i);
 
@@ -32,7 +33,7 @@ describe("Given the BugForm component", () => {
     });
 
     test("Then it should show a 'Classification' form section with phylum, class, and order inputs", () => {
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const classificationSection = page.getByRole("group", {
         name: /classification/i,
@@ -60,7 +61,7 @@ describe("Given the BugForm component", () => {
       const expectedInput = "Hello World";
       const inputLabel = /common name/i;
 
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const nameInput = page.getByLabelText(inputLabel);
 
@@ -74,7 +75,7 @@ describe("Given the BugForm component", () => {
     test("Then it should be checked", async () => {
       const inputLabel = /add to favorites/i;
 
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const isFavoriteInput = page.getByLabelText(inputLabel);
 
@@ -86,7 +87,7 @@ describe("Given the BugForm component", () => {
 
   describe("When the 'Arthropoda' option of the phylum input in 'Classification' section is selected", () => {
     test("Then it the 'Arthropoda' option should be selected", async () => {
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const classificationSection = page.getByRole("group", {
         name: /classification/i,
@@ -102,7 +103,7 @@ describe("Given the BugForm component", () => {
     });
 
     test("Then the 'Insecta' option of the class input in 'Classification' section should be available", async () => {
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const classificationSection = page.getByRole("group", {
         name: /classification/i,
@@ -128,7 +129,7 @@ describe("Given the BugForm component", () => {
 
   describe("When the 'Insecta' option of the class input in 'Classification' section is selected", () => {
     test("Then the 'Coleoptera' option of the order input in 'Classification' section should be available", async () => {
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const classificationSection = page.getByRole("group", {
         name: /classification/i,
@@ -160,7 +161,7 @@ describe("Given the BugForm component", () => {
 
   describe("When no option of the phylum input in 'Classification' section is selected", () => {
     test("Then the 'Insecta' option of the class input in 'Classification' section should not be available", async () => {
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const classificationSection = page.getByRole("group", {
         name: /classification/i,
@@ -180,7 +181,7 @@ describe("Given the BugForm component", () => {
 
   describe("When no option of the class input in 'Classification' section is selected", () => {
     test("Then the 'Coleoptera' option of the order intpu in 'Classification' section should not be available", async () => {
-      render(<BugForm />);
+      render(<BugForm />, { wrapper: AllContextsProvider });
 
       const classificationSection = page.getByRole("group", {
         name: /classification/i,
