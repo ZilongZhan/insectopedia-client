@@ -1,7 +1,12 @@
 import { http, HttpResponse } from "msw";
-import { insectsDtoCollection } from "../bug/dto/fixtures";
+import {
+  insect1Dto,
+  insect2Dto,
+  insectsDtoCollection,
+} from "../bug/dto/fixtures";
 import type { BugsInfoDto } from "../bug/dto/types";
 import checkUrlExists from "./checkUrlExists/checkUrlExists";
+import type { BugFormData } from "../bug/types";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -29,9 +34,41 @@ export const handlers = [
 
     const bugs = doesPageExist ? pages[pageNumber - 1] : [];
 
-    return HttpResponse.json<BugsInfoDto>({
-      bugs,
-      bugsTotal,
-    });
+    return HttpResponse.json<BugsInfoDto>(
+      {
+        bugs,
+        bugsTotal,
+      },
+      { status: 200 },
+    );
+  }),
+
+  http.post(`${apiUrl}/bugs`, async ({ request }) => {
+    const invalidBugName = "A";
+
+    const { bugData } = (await request.json()) as {
+      bugData: BugFormData;
+    };
+
+    if (bugData.name === insect2Dto.commonName) {
+      return HttpResponse.json(
+        {
+          error: `Bug with name '${bugData.name}' already exists`,
+        },
+        { status: 409 },
+      );
+    }
+
+    if (bugData.name === invalidBugName) {
+      return HttpResponse.json(
+        {
+          error:
+            "Bug validation failed: commonName: Minimum 3 characters required",
+        },
+        { status: 400 },
+      );
+    }
+
+    return HttpResponse.json({ bug: insect1Dto }, { status: 200 });
   }),
 ];

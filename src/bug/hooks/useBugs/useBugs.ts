@@ -2,7 +2,11 @@ import { useCallback, useMemo } from "react";
 import type { UseBugsStructure } from "../types";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import BugsClient from "../../client/BugsClient";
-import { renderBugsInfoActionCreator } from "../../slice/bugSlice";
+import {
+  addBugActionCreator,
+  renderBugsInfoActionCreator,
+} from "../../slice/bugSlice";
+import type { BugFormData } from "../../types";
 
 const useBugs = (): UseBugsStructure => {
   const bugsInfo = useAppSelector((state) => state.bugsReducer.bugsInfo);
@@ -21,9 +25,18 @@ const useBugs = (): UseBugsStructure => {
     [bugsClient, dispatch],
   );
 
+  const addNewReport = async (bugFormData: BugFormData): Promise<void> => {
+    const bug = await bugsClient.addBug(bugFormData);
+
+    const action = addBugActionCreator(bug);
+
+    dispatch(action);
+  };
+
   return {
     bugsInfo,
     renderBugsInfo,
+    addNewReport,
   };
 };
 

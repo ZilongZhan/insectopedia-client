@@ -1,7 +1,7 @@
-import { mapBugsDtoToBugs } from "../dto/mappers";
+import { mapBugDtoToBug, mapBugsDtoToBugs } from "../dto/mappers";
 import type { BugsInfoDto } from "../dto/types";
-import type { BugsInfo } from "../types";
-import type { BugsClientStructure } from "./types";
+import type { Bug, BugFormData, BugsInfo } from "../types";
+import type { BugResponse, BugsClientStructure } from "./types";
 
 class BugsClient implements BugsClientStructure {
   private readonly apiUrl = import.meta.env.VITE_API_URL;
@@ -27,6 +27,32 @@ class BugsClient implements BugsClientStructure {
       bugs,
       bugsTotal,
     };
+  }
+
+  public async addBug(bugFormData: BugFormData): Promise<Bug> {
+    const bugDataValues = Object.entries(bugFormData);
+
+    for (const [key, value] of bugDataValues) {
+      if (value === "") {
+        throw new Error(`Error: input field '${key}' cannot have empty value`);
+      }
+    }
+
+    const response = await fetch(`${this.apiUrl}/bugs`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ bugData: bugFormData }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error adding new bug");
+    }
+
+    const { bug: bugDto } = (await response.json()) as BugResponse;
+
+    return mapBugDtoToBug(bugDto);
   }
 }
 

@@ -11,7 +11,6 @@ const HomePage: React.FC = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 
   const {
-    bugsInfo,
     bugsInfo: { bugs, bugsTotal },
     renderBugsInfo,
   } = useBugs();
@@ -38,7 +37,7 @@ const HomePage: React.FC = () => {
         <span>{`${bugs.length} of ${bugsTotal}`}</span>
       </div>
       <BugsList bugs={bugs} />
-      <Paginator pageNumber={pageNumber} bugsInfo={bugsInfo} />
+      <Paginator pageNumber={pageNumber} bugsTotal={bugsTotal} />
     </>
   );
 };

@@ -1,4 +1,3 @@
-import type { BugsInfo } from "../../types";
 import PaginatorIndicator, {
   type PaginatorIndicatorProps,
 } from "./subcomponents/PaginatorIndicator/PaginatorIndicator";
@@ -10,7 +9,7 @@ import "./Paginator.css";
 
 interface PaginatorProps {
   pageNumber: number;
-  bugsInfo: BugsInfo;
+  bugsTotal: number;
 }
 
 interface PaginatorSubcomponents {
@@ -20,9 +19,9 @@ interface PaginatorSubcomponents {
 
 const Paginator: React.FC<PaginatorProps> & PaginatorSubcomponents = ({
   pageNumber,
-  bugsInfo: { bugs, bugsTotal },
+  bugsTotal,
 }) => {
-  const bugsPerPage = bugs.length;
+  const bugsPerPage = 16;
   const pagesTotal = Math.ceil(bugsTotal / bugsPerPage);
 
   const previousPage = pageNumber - 1;
