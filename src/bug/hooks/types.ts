@@ -4,6 +4,7 @@ import type { BugFormData, BugsInfo } from "../types";
 export interface UseBugsStructure {
   bugsInfo: BugsInfo;
   renderBugsInfo: (pageNumber: number) => Promise<void>;
+  addNewReport: (bugFormData: BugFormData) => Promise<void>;
 }
 
 export interface UsePaginatorStructure {

@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { BugsInfo } from "../types";
+import type { Bug, BugsInfo } from "../types";
 
 export type BugState = { bugsInfo: BugsInfo };
 
@@ -23,9 +23,23 @@ const bugSlice = createSlice({
         bugsInfo: action.payload,
       };
     },
+    addBug: (
+      { bugsInfo: { bugs, bugsTotal } },
+      { payload: newBug }: PayloadAction<Bug>,
+    ): BugState => {
+      return {
+        bugsInfo: {
+          bugs: [...bugs, newBug],
+          bugsTotal: bugsTotal + 1,
+        },
+      };
+    },
   },
 });
 
 export const bugsReducer = bugSlice.reducer;
 
-export const { renderBugsInfo: renderBugsInfoActionCreator } = bugSlice.actions;
+export const {
+  renderBugsInfo: renderBugsInfoActionCreator,
+  addBug: addBugActionCreator,
+} = bugSlice.actions;
