@@ -1,0 +1,23 @@
+.button {
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 5px;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.button--submit {
+  background-color: #f68522;
+  color: #efefef;
+}
+
+.button--delete {
+  position: absolute;
+  padding: 0;
+  font-size: 1rem;
+  top: 7px;
+  right: 7px;
+}
