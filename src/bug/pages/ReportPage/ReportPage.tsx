@@ -7,7 +7,7 @@ const ReportPage: React.FC = () => {
   return (
     <>
       <div className="title-container">
-        <SnailSvg className="title-container__icon" />
+        <SnailSvg className="title-container__icon" aria-hidden={true} />
         <h2 className="title-container__page-title">New report</h2>
       </div>
       <BugForm />

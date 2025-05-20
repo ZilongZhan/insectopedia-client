@@ -10,7 +10,12 @@ const Navigation: React.FC = () => {
       <ul className="navigator__links">
         <li>
           <NavLink className="navigator__link" to={"/report"}>
-            <SnailSvg width={45} height={22} className="navigator__link-icon" />
+            <SnailSvg
+              className="navigator__link-icon"
+              aria-hidden={true}
+              width={45}
+              height={22}
+            />
             <span className="navigator__link-label">Report</span>
           </NavLink>
         </li>
@@ -18,6 +23,7 @@ const Navigation: React.FC = () => {
           <NavLink className="navigator__link" to={"/home"}>
             <GrasshopperSvg
               className="navigator__link-icon"
+              aria-hidden={true}
               width={252}
               height={159}
             />

@@ -1,6 +1,7 @@
 import { v4 as uuid } from "uuid";
 import classifications from "../../../data/classification";
 import useForm from "../../hooks/useForm/useForm";
+import Button from "../../../components/Button/Button";
 
 import "./BugForm.css";
 
@@ -159,9 +160,9 @@ const BugForm: React.FC = () => {
           </label>
         </div>
       </div>
-      <button className="submit-button" type="submit" disabled={!isValidData}>
+      <Button modifier="submit" type="submit" disabled={!isValidData}>
         Send report
-      </button>
+      </Button>
     </form>
   );
 };
