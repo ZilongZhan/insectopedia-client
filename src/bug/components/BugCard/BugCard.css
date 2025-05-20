@@ -4,6 +4,7 @@
   background-color: #d9d9d9;
   border-radius: 2px;
   height: 100%;
+  position: relative;
 }
 
 .bug__image {
@@ -49,4 +50,13 @@
 .favorite-icon--true {
   fill: #f2ce2d;
   stroke: none;
+}
+
+.delete-icon {
+  width: 30px;
+  fill: #e15b64;
+
+  &:hover {
+    fill: #e61f2c;
+  }
 }

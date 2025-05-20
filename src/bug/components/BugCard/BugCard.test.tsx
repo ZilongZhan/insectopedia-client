@@ -40,5 +40,17 @@ describe("Given the BugCard component", () => {
 
       expect(StarSvg).toBeInTheDocument();
     });
+
+    test("Then it should show a 'Delete Insect One' button", () => {
+      const buttonText = new RegExp(`delete ${insect1.name}`, "i");
+
+      render(<BugCard bug={insect1} index={0} />);
+
+      const deleteButton = page.getByRole("button", {
+        name: buttonText,
+      });
+
+      expect(deleteButton).toBeInTheDocument();
+    });
   });
 });
