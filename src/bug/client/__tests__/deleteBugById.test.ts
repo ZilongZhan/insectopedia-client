@@ -13,14 +13,14 @@ describe("Given the deleteBugById method of BugsClient", () => {
   });
 
   describe("When it receives Insect Two's ID which doesn't exist", () => {
-    test("Then it should throw 'Error deleting bug' error", () => {
+    test("Then it should throw 'Error deleting bug' error", async () => {
       const expectedErrorMessage = "Error deleting bug";
 
       const deleteInsectTwo = async (): Promise<void> => {
         await bugsClient.deleteBugById(insect2.id);
       };
 
-      expect(deleteInsectTwo).rejects.toThrow(expectedErrorMessage);
+      await expect(deleteInsectTwo).rejects.toThrow(expectedErrorMessage);
     });
   });
 });

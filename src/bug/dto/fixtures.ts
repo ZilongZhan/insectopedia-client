@@ -1,7 +1,7 @@
 import type { BugDto } from "./types";
 
 export const insect1Dto: BugDto = {
-  _id: "bug-1",
+  _id: "664b8b4e2f8a4c8a1b3d1a01",
   commonName: "Insect One",
   latinName: "Insecta oneus",
   imageUrl: "/images/insect1.jpg",
@@ -14,7 +14,7 @@ export const insect1Dto: BugDto = {
 };
 
 export const insect2Dto: BugDto = {
-  _id: "bug-2",
+  _id: "664b8b4e2f8a4c8a1b3d1a02",
   commonName: "Insect Two",
   latinName: "Insecta twous",
   imageUrl: "/images/insect2.jpg",
@@ -27,7 +27,7 @@ export const insect2Dto: BugDto = {
 };
 
 export const insect3Dto: BugDto = {
-  _id: "bug-3",
+  _id: "664b8b4e2f8a4c8a1b3d1a03",
   commonName: "Insect Three",
   latinName: "Insecta threus",
   imageUrl: "/images/insect3.jpg",
@@ -40,7 +40,7 @@ export const insect3Dto: BugDto = {
 };
 
 export const insect4Dto: BugDto = {
-  _id: "bug-4",
+  _id: "664b8b4e2f8a4c8a1b3d1a04",
   commonName: "Housefly",
   latinName: "Insecta fourus",
   imageUrl: "/images/insect4.jpg",
@@ -53,7 +53,7 @@ export const insect4Dto: BugDto = {
 };
 
 export const insect5Dto: BugDto = {
-  _id: "bug-5",
+  _id: "664b8b4e2f8a4c8a1b3d1a05",
   commonName: "Insect Five",
   latinName: "Insecta fiveus",
   imageUrl: "/images/insect5.jpg",
@@ -66,7 +66,7 @@ export const insect5Dto: BugDto = {
 };
 
 export const insect6Dto: BugDto = {
-  _id: "bug-6",
+  _id: "664b8b4e2f8a4c8a1b3d1a06",
   commonName: "Insect Six",
   latinName: "Insecta sixus",
   imageUrl: "/images/insect6.jpg",
@@ -79,7 +79,7 @@ export const insect6Dto: BugDto = {
 };
 
 export const insect7Dto: BugDto = {
-  _id: "bug-7",
+  _id: "664b8b4e2f8a4c8a1b3d1a07",
   commonName: "Insect Seven",
   latinName: "Insecta sevenus",
   imageUrl: "/images/insect7.jpg",
@@ -92,7 +92,7 @@ export const insect7Dto: BugDto = {
 };
 
 export const insect8Dto: BugDto = {
-  _id: "bug-8",
+  _id: "664b8b4e2f8a4c8a1b3d1a08",
   commonName: "Insect Eight",
   latinName: "Insecta eightus",
   imageUrl: "/images/insect8.jpg",
@@ -105,7 +105,7 @@ export const insect8Dto: BugDto = {
 };
 
 export const insect9Dto: BugDto = {
-  _id: "bug-9",
+  _id: "664b8b4e2f8a4c8a1b3d1a09",
   commonName: "Insect Nine",
   latinName: "Insecta nineus",
   imageUrl: "/images/insect9.jpg",
@@ -118,7 +118,7 @@ export const insect9Dto: BugDto = {
 };
 
 export const insect10Dto: BugDto = {
-  _id: "bug-10",
+  _id: "664b8b4e2f8a4c8a1b3d1a0a",
   commonName: "Insect Ten",
   latinName: "Insecta tenus",
   imageUrl: "/images/insect10.jpg",
@@ -131,7 +131,7 @@ export const insect10Dto: BugDto = {
 };
 
 export const insect11Dto: BugDto = {
-  _id: "bug-11",
+  _id: "664b8b4e2f8a4c8a1b3d1a0b",
   commonName: "Insect Eleven",
   latinName: "Insecta elevenus",
   imageUrl: "/images/insect11.jpg",
@@ -144,7 +144,7 @@ export const insect11Dto: BugDto = {
 };
 
 export const insect12Dto: BugDto = {
-  _id: "bug-12",
+  _id: "664b8b4e2f8a4c8a1b3d1a0c",
   commonName: "Insect Twelve",
   latinName: "Insecta twelveus",
   imageUrl: "/images/insect12.jpg",
@@ -157,7 +157,7 @@ export const insect12Dto: BugDto = {
 };
 
 export const insect13Dto: BugDto = {
-  _id: "bug-13",
+  _id: "664b8b4e2f8a4c8a1b3d1a0d",
   commonName: "Insect Thirteen",
   latinName: "Insecta thirteenus",
   imageUrl: "/images/insect13.jpg",
@@ -170,7 +170,7 @@ export const insect13Dto: BugDto = {
 };
 
 export const insect14Dto: BugDto = {
-  _id: "bug-14",
+  _id: "664b8b4e2f8a4c8a1b3d1a0e",
   commonName: "Insect Fourteen",
   latinName: "Insecta fourteenus",
   imageUrl: "/images/insect14.jpg",
@@ -183,7 +183,7 @@ export const insect14Dto: BugDto = {
 };
 
 export const insect15Dto: BugDto = {
-  _id: "bug-15",
+  _id: "664b8b4e2f8a4c8a1b3d1a0f",
   commonName: "Insect Fifteen",
   latinName: "Insecta fifteenus",
   imageUrl: "/images/insect15.jpg",
@@ -196,7 +196,7 @@ export const insect15Dto: BugDto = {
 };
 
 export const insect16Dto: BugDto = {
-  _id: "bug-16",
+  _id: "664b8b4e2f8a4c8a1b3d1a10",
   commonName: "Insect Sixteen",
   latinName: "Insecta sixteenus",
   imageUrl: "/images/insect16.jpg",
@@ -209,7 +209,7 @@ export const insect16Dto: BugDto = {
 };
 
 export const insect17Dto: BugDto = {
-  _id: "bug-17",
+  _id: "664b8b4e2f8a4c8a1b3d1a11",
   commonName: "Insect Seventeen",
   latinName: "Insecta seventenus",
   imageUrl: "/images/insect17.jpg",

@@ -1,6 +1,7 @@
 import Button from "../../../components/Button/Button";
 import DeleteButtonSvg from "../../../components/shared/DeleteButtonSvg/DeleteButtonSvg";
 import StarSvg from "../../../components/shared/StarSvg/StarSvg";
+import useBugs from "../../hooks/useBugs/useBugs";
 import type { Bug } from "../../types";
 
 import "./BugCard.css";
@@ -10,15 +11,25 @@ interface BugCardProps {
   index: number;
 }
 const BugCard: React.FC<BugCardProps> = ({
-  bug: { imageUrl, imageAlt, isFavorite, name, scientificName },
+  bug: { id, imageUrl, imageAlt, isFavorite, name, scientificName },
   index,
 }) => {
+  const { deleteEntry } = useBugs();
+
   const modifier = isFavorite ? " favorite-icon--true" : "";
   const loadingMode = index > 6 ? "lazy" : "eager";
 
+  const handleDelete = (): void => {
+    deleteEntry(id);
+  };
+
   return (
     <article className="bug">
-      <Button modifier="delete" aria-label={`Delete ${name}`}>
+      <Button
+        modifier="delete"
+        aria-label={`Delete ${name}`}
+        action={handleDelete}
+      >
         <DeleteButtonSvg
           className="delete-icon"
           width={29}
