@@ -1,3 +1,5 @@
+import Button from "../../../components/Button/Button";
+import DeleteButtonSvg from "../../../components/shared/DeleteButtonSvg/DeleteButtonSvg";
 import StarSvg from "../../../components/shared/StarSvg/StarSvg";
 import type { Bug } from "../../types";
 
@@ -16,6 +18,14 @@ const BugCard: React.FC<BugCardProps> = ({
 
   return (
     <article className="bug">
+      <Button modifier="delete" aria-label={`Delete ${name}`}>
+        <DeleteButtonSvg
+          className="delete-icon"
+          width={29}
+          height={16}
+          aria-hidden={true}
+        />
+      </Button>
       <img
         loading={loadingMode}
         className="bug__image"

@@ -41,3 +41,7 @@ fieldset {
   background: none;
   border: none;
 }
+
+button {
+  cursor: pointer;
+}

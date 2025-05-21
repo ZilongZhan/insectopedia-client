@@ -12,5 +12,27 @@ describe("Given the ReportPage component", () => {
 
       expect(pageTitle).toBeInTheDocument();
     });
+
+    test("Then it should show a 'Common name' input", () => {
+      const inputLabel = /common name/i;
+
+      render(<ReportPage />, { wrapper: AllContextsProvider });
+
+      const commonNameInput = page.getByLabelText(inputLabel);
+
+      expect(commonNameInput).toBeInTheDocument();
+    });
+
+    test("Then it should show a 'Send report' button", () => {
+      const buttonText = /send report/i;
+
+      render(<ReportPage />, { wrapper: AllContextsProvider });
+
+      const sendReportButton = page.getByRole("button", {
+        name: buttonText,
+      });
+
+      expect(sendReportButton).toBeInTheDocument();
+    });
   });
 });

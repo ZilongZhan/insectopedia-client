@@ -27,6 +27,7 @@ const HomePage: React.FC = () => {
       <div className="title-container">
         <GrasshopperSvg
           className="title-container__icon"
+          aria-hidden={true}
           width={35}
           height={21}
         />

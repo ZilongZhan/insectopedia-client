@@ -28,7 +28,7 @@ Ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-repo/insectopedia-client.git
+   git clone https://github.com/zilongzhan/insectopedia-client.git
    cd insectopedia-client
    ```
 
@@ -58,19 +58,19 @@ Set the required variables (e.g., `VITE_API_URL`).
 
 ### Scripts
 
-- **Start development server:**  
+- **Start development server:**
   `npm run dev`
-- **Build for production:**  
+- **Build for production:**
   `npm run build`
-- **Preview production build:**  
+- **Preview production build:**
   `npm run preview`
-- **Run tests:**  
+- **Run tests:**
   `npm run test`
-- **Run tests in watch mode:**  
+- **Run tests in watch mode:**
   `npm run test:dev`
-- **Run tests with coverage:**  
+- **Run tests with coverage:**
   `npm run test:coverage`
-- **Lint code:**  
+- **Lint code:**
   `npm run lint`
 
 ### Code Quality
