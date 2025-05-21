@@ -60,4 +60,12 @@ export const handlers = [
 
     return HttpResponse.json({ bug: insect1Dto }, { status: 200 });
   }),
+
+  http.delete(`${apiUrl}/bugs/${insect1Dto._id}`, () => {
+    return HttpResponse.json({ bug: insect1Dto });
+  }),
+
+  http.delete(`${apiUrl}/bugs/${insect2Dto._id}`, () => {
+    return HttpResponse.json(null, { status: 404 });
+  }),
 ];
