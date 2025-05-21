@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import BugsClient from "../../client/BugsClient";
 import {
   addBugActionCreator,
+  deleteBugActionCreator,
   renderBugsInfoActionCreator,
 } from "../../slice/bugSlice";
 import type { BugFormData } from "../../types";
@@ -33,10 +34,19 @@ const useBugs = (): UseBugsStructure => {
     dispatch(action);
   };
 
+  const deleteEntry = async (bugId: string): Promise<void> => {
+    const bug = await bugsClient.deleteBugById(bugId);
+
+    const action = deleteBugActionCreator(bug);
+
+    dispatch(action);
+  };
+
   return {
     bugsInfo,
     renderBugsInfo,
     addNewReport,
+    deleteEntry,
   };
 };
 

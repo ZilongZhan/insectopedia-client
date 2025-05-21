@@ -34,6 +34,17 @@ const bugSlice = createSlice({
         },
       };
     },
+    deleteBug: (
+      { bugsInfo: { bugs, bugsTotal } },
+      { payload: bug }: PayloadAction<Bug>,
+    ): BugState => {
+      return {
+        bugsInfo: {
+          bugs: bugs.filter((thisBug) => thisBug.name !== bug.name),
+          bugsTotal: bugsTotal - 1,
+        },
+      };
+    },
   },
 });
 
@@ -42,4 +53,5 @@ export const bugsReducer = bugSlice.reducer;
 export const {
   renderBugsInfo: renderBugsInfoActionCreator,
   addBug: addBugActionCreator,
+  deleteBug: deleteBugActionCreator,
 } = bugSlice.actions;

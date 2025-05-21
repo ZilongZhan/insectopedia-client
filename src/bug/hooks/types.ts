@@ -5,6 +5,7 @@ export interface UseBugsStructure {
   bugsInfo: BugsInfo;
   renderBugsInfo: (pageNumber: number) => Promise<void>;
   addNewReport: (bugFormData: BugFormData) => Promise<void>;
+  deleteEntry: (bugId: string) => Promise<void>;
 }
 
 export interface UsePaginatorStructure {

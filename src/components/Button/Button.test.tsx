@@ -1,6 +1,6 @@
 import { render } from "vitest-browser-react";
-import Button from "./Button";
 import { page, userEvent } from "@vitest/browser/context";
+import Button from "./Button";
 
 describe("Given the Button component", () => {
   describe("When it receives 'Hello World' and an action", () => {

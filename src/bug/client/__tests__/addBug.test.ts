@@ -19,19 +19,19 @@ describe("Given the addBug method of BugsClient", () => {
   });
 
   describe("When it receives insect 2 form data which already exists", () => {
-    test("Then it should throw error 'Error adding new bug'", () => {
+    test("Then it should throw error 'Error adding new bug'", async () => {
       const expectedErrorMessage = "Error adding new bug";
 
       const addInsect2 = async (): Promise<void> => {
         await bugsClient.addBug(insect2FormData);
       };
 
-      expect(addInsect2).rejects.toThrow(expectedErrorMessage);
+      await expect(addInsect2).rejects.toThrow(expectedErrorMessage);
     });
   });
 
   describe("When it receives insect 3 form data with invalid name 'A'", () => {
-    test("Then it should throw error 'Error adding new bug'", () => {
+    test("Then it should throw error 'Error adding new bug'", async () => {
       const expectedErrorMessage = "Error adding new bug";
 
       const insect3FormDataWithInvalidName: BugFormData = {
@@ -43,7 +43,7 @@ describe("Given the addBug method of BugsClient", () => {
         await bugsClient.addBug(insect3FormDataWithInvalidName);
       };
 
-      expect(addInsect3).rejects.toThrow(expectedErrorMessage);
+      await expect(addInsect3).rejects.toThrow(expectedErrorMessage);
     });
   });
 });
