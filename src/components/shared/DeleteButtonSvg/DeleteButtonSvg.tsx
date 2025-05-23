@@ -1,10 +1,13 @@
 import type { SVGProps } from "react";
 
+import "./DeleteButtonSvg.css";
+
 const DeleteButtonSvg: React.FC<SVGProps<SVGSVGElement>> = ({
   ...svgProps
 }) => {
   return (
     <svg
+      className="delete-icon"
       width="23"
       height="12"
       viewBox="0 0 23 12"

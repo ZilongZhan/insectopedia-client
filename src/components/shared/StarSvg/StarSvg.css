@@ -1,0 +1,15 @@
+.favorite-icon {
+  width: 25px;
+  fill: none;
+  stroke: #848484;
+  stroke-width: 2px;
+}
+
+.favorite-icon--card {
+  align-self: flex-end;
+}
+
+.favorite-icon--true {
+  fill: #f2ce2d;
+  stroke: none;
+}

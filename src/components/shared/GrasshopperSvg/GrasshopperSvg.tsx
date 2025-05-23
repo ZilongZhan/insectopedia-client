@@ -5,7 +5,7 @@ const GrasshopperSvg: React.FC<SVGProps<SVGSVGElement>> = ({ ...svgProps }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="1280"
-      height="807.000000pt"
+      height="807"
       viewBox="0 0 1280 807"
       preserveAspectRatio="xMidYMid meet"
       {...svgProps}
