@@ -13,6 +13,7 @@ const BugDetails: React.FC = () => {
   const { bugId } = useParams<{ bugId: string }>();
   const [bug, setBug] = useState<Bug | null>(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!bugId) {
       return;
@@ -23,7 +24,7 @@ const BugDetails: React.FC = () => {
 
       setBug(bug);
     })();
-  });
+  }, [bugId, loadBugDetails]);
 
   if (!bug || !bugId) {
     return <span>Bug not available</span>;

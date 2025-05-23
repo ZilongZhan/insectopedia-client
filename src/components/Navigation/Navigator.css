@@ -1,5 +1,5 @@
 .active {
-  fill: #f68522;
+  fill: var(--accent-color);
   font-weight: bold;
 }
 
@@ -28,6 +28,7 @@
 
 .navigator__link-icon {
   width: 40px;
+  height: auto;
 }
 
 .navigator__link-label {

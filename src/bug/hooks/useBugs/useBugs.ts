@@ -42,9 +42,12 @@ const useBugs = (): UseBugsStructure => {
     dispatch(action);
   };
 
-  const loadBugDetails = async (bugId: string): Promise<Bug> => {
-    return await bugsClient.getBugById(bugId);
-  };
+  const loadBugDetails = useCallback(
+    async (bugId: string): Promise<Bug> => {
+      return await bugsClient.getBugById(bugId);
+    },
+    [bugsClient],
+  );
 
   return {
     bugsInfo,

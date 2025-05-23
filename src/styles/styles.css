@@ -1,3 +1,8 @@
+:root {
+  --main-color: #d9d9d9;
+  --accent-color: #f68522;
+}
+
 *,
 ::before,
 ::after {

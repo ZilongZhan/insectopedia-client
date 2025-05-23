@@ -4,6 +4,7 @@ import App from "../components/App/App";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import HomePage from "../bug/pages/HomePage/HomePage";
 import ReportPage from "../bug/pages/ReportPage/ReportPage";
+import DetailsPage from "../bug/pages/DetailsPage/DetailsPage";
 
 const AppRouter: React.FC<PropsWithChildren> = ({ children = <App /> }) => {
   return (
@@ -12,6 +13,7 @@ const AppRouter: React.FC<PropsWithChildren> = ({ children = <App /> }) => {
         <Route index element={<Navigate to={"/home"} />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/report" element={<ReportPage />} />
+        <Route path="/details/:bugId" element={<DetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
