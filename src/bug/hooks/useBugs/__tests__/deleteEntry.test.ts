@@ -21,8 +21,8 @@ describe("Given the deleteEntry function", () => {
   });
 
   describe("When it receives Insect Two's ID which doesn't exist", () => {
-    test("Then it should throw error 'Error deleting bug'", async () => {
-      const expectedErrorMessage = "Error deleting bug";
+    test("Then it should throw error 'Failed to delete bug'", async () => {
+      const expectedErrorMessage = "Failed to delete bug";
 
       const { result } = renderHook(() => useBugs(), {
         wrapper: AllContextsProvider,

@@ -8,42 +8,67 @@ import type { BugFormData } from "../../types";
 import BugsClient from "../BugsClient";
 
 describe("Given the addBug method of BugsClient", () => {
-  const bugsClient = new BugsClient();
+  describe("When it receives Insect One form data", () => {
+    test("Then it should respond with Insect One", async () => {
+      const bugsClient = new BugsClient();
 
-  describe("When it receives insect 1 form data", () => {
-    test("Then it should respond with insect 1", async () => {
       const bug = await bugsClient.addBug(insect1FormData);
 
       expect(bug).toStrictEqual(insect1);
     });
   });
 
-  describe("When it receives insect 2 form data which already exists", () => {
-    test("Then it should throw error 'Error adding new bug'", async () => {
-      const expectedErrorMessage = "Error adding new bug";
+  describe("When it receives Insect Two form data which already exists", () => {
+    test("Then it should throw error 'Failed to add new bug'", async () => {
+      const expectedErrorMessage = "Failed to add new bug";
 
-      const addInsect2 = async (): Promise<void> => {
+      const bugsClient = new BugsClient();
+
+      const addInsectTwo = async (): Promise<void> => {
         await bugsClient.addBug(insect2FormData);
       };
 
-      await expect(addInsect2).rejects.toThrow(expectedErrorMessage);
+      await expect(addInsectTwo).rejects.toThrow(expectedErrorMessage);
     });
   });
 
-  describe("When it receives insect 3 form data with invalid name 'A'", () => {
-    test("Then it should throw error 'Error adding new bug'", async () => {
-      const expectedErrorMessage = "Error adding new bug";
+  describe("When it receives Insect Three form data with invalid name 'A'", () => {
+    test("Then it should throw error 'Failed to add new bug'", async () => {
+      const expectedErrorMessage = "Failed to add new bug";
+      const invalidName = "A";
 
       const insect3FormDataWithInvalidName: BugFormData = {
         ...insect3FormData,
-        name: "A",
+        name: invalidName,
       };
 
-      const addInsect3 = async (): Promise<void> => {
+      const bugsClient = new BugsClient();
+
+      const addInsectThree = async (): Promise<void> => {
         await bugsClient.addBug(insect3FormDataWithInvalidName);
       };
 
-      await expect(addInsect3).rejects.toThrow(expectedErrorMessage);
+      await expect(addInsectThree).rejects.toThrow(expectedErrorMessage);
+    });
+  });
+
+  describe("When it receives Insect Three with empty name", () => {
+    test("Then it should throw error 'Input field 'name' cannot have empty value'", async () => {
+      const expectedErrorMessage = "Input field 'name' cannot have empty value";
+      const emptyName = "";
+
+      const insectThreeWithEmptyName: BugFormData = {
+        ...insect3FormData,
+        name: emptyName,
+      };
+
+      const bugsClient = new BugsClient();
+
+      const addInsectFour = async (): Promise<void> => {
+        await bugsClient.addBug(insectThreeWithEmptyName);
+      };
+
+      await expect(addInsectFour).rejects.toThrow(expectedErrorMessage);
     });
   });
 });

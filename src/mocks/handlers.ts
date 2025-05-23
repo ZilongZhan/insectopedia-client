@@ -34,13 +34,18 @@ export const handlers = [
 
     const bugs = doesPageExist ? pages[pageNumber - 1] : [];
 
-    return HttpResponse.json<BugsInfoDto>(
-      {
-        bugs,
-        bugsTotal,
-      },
-      { status: 200 },
-    );
+    return HttpResponse.json<BugsInfoDto>({
+      bugs,
+      bugsTotal,
+    });
+  }),
+
+  http.get(`${apiUrl}/bugs/${insect1Dto._id}`, () => {
+    return HttpResponse.json({ bug: insect1Dto });
+  }),
+
+  http.get(`${apiUrl}/bugs/${insect2Dto._id}`, () => {
+    return HttpResponse.json(null, { status: 404 });
   }),
 
   http.post(`${apiUrl}/bugs`, async ({ request }) => {

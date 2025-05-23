@@ -16,7 +16,7 @@ class BugsClient implements BugsClientStructure {
     );
 
     if (!response.ok) {
-      throw new Error("Error fetching bugs info");
+      throw new Error("Failed to fetch bugs info");
     }
 
     const { bugs: bugsDto, bugsTotal } = (await response.json()) as BugsInfoDto;
@@ -34,7 +34,7 @@ class BugsClient implements BugsClientStructure {
 
     for (const [key, value] of bugDataValues) {
       if (value === "") {
-        throw new Error(`Error: input field '${key}' cannot have empty value`);
+        throw new Error(`Input field '${key}' cannot have empty value`);
       }
     }
 
@@ -47,7 +47,7 @@ class BugsClient implements BugsClientStructure {
     });
 
     if (!response.ok) {
-      throw new Error("Error adding new bug");
+      throw new Error("Failed to add new bug");
     }
 
     const { bug: bugDto } = (await response.json()) as BugResponse;
@@ -55,13 +55,25 @@ class BugsClient implements BugsClientStructure {
     return mapBugDtoToBug(bugDto);
   }
 
-  deleteBugById = async (bugId: string): Promise<Bug> => {
+  public deleteBugById = async (bugId: string): Promise<Bug> => {
     const response = await fetch(`${this.apiUrl}/bugs/${bugId}`, {
       method: "DELETE",
     });
 
     if (!response.ok) {
-      throw new Error("Error deleting bug");
+      throw new Error("Failed to delete bug");
+    }
+
+    const { bug: bugDto } = (await response.json()) as BugResponse;
+
+    return mapBugDtoToBug(bugDto);
+  };
+
+  public getBugById = async (bugId: string): Promise<Bug> => {
+    const response = await fetch(`${this.apiUrl}/bugs/${bugId}`);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch bug");
     }
 
     const { bug: bugDto } = (await response.json()) as BugResponse;
