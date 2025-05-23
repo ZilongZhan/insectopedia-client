@@ -8,8 +8,8 @@ describe("Given the renderBugsInfo function", () => {
   const bugsPerPage = 16;
   const expectedBugsTotal = insectsCollection.length;
 
-  describe("When it receives 1", () => {
-    test("Then it should set insect 1 to 16 as bugs and number 17 as total bugs", async () => {
+  describe("When it receives page number 1", () => {
+    test("Then it should set Insect One, Insect Two, Insect Three... to Insect Sixteen as bugs and number 17 as total bugs", async () => {
       const pageNumber = 1;
 
       const expectedBugs = insectsCollection.slice(0, bugsPerPage * pageNumber);
@@ -28,8 +28,8 @@ describe("Given the renderBugsInfo function", () => {
     });
   });
 
-  describe("When it receives 2", () => {
-    test("Then it should set insect 17 as bugs and number 17 as total bugs", async () => {
+  describe("When it receives page number 2", () => {
+    test("Then it should set Insect Seventeen as bugs and number 17 as total bugs", async () => {
       const pageNumber = 2;
 
       const secondPageInitialPosition = 16;

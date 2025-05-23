@@ -25,15 +25,14 @@ describe("Given the getBugsInfo method of BugsClient", () => {
 
   describe("When it receives -1 invalid page number", () => {
     test("Then it should throw error with message 'Invalid page number: Cannot be less than 1'", async () => {
+      const expectedErrorMessage = "Invalid page number: Cannot be less than 1";
       const pageNumber = -1;
 
       const getPostsInfo = async (): Promise<void> => {
         await bugsClient.getBugsInfo(pageNumber);
       };
 
-      await expect(getPostsInfo).rejects.toThrow(
-        "Invalid page number: Cannot be less than 1",
-      );
+      await expect(getPostsInfo).rejects.toThrow(expectedErrorMessage);
     });
   });
 
@@ -58,15 +57,16 @@ describe("Given the getBugsInfo method of BugsClient", () => {
   });
 
   describe("When the response isn't successful", () => {
-    test("Then it should throw error with message 'Error fetching bugs info'", async () => {
+    test("Then it should throw error 'Failed to fetch bugs info'", async () => {
       const apiUrl = import.meta.env.VITE_API_URL;
+      const expectedErrorMessage = "Failed to fetch bugs info";
 
       server.use(
         http.get(`${apiUrl}/bugs`, () => new Response(null, { status: 500 })),
       );
 
       await expect(async () => await bugsClient.getBugsInfo()).rejects.toThrow(
-        "Error fetching bugs info",
+        expectedErrorMessage,
       );
     });
   });
