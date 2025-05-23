@@ -18,7 +18,7 @@ describe("Given the renderBugsInfo function", () => {
         wrapper: AllContextsProvider,
       });
 
-      await result.current.renderBugsInfo(pageNumber);
+      await result.current.loadBugsInfo(pageNumber);
 
       const bugs = result.current.bugsInfo.bugs;
       const bugsTotal = result.current.bugsInfo.bugsTotal;
@@ -43,7 +43,7 @@ describe("Given the renderBugsInfo function", () => {
         wrapper: AllContextsProvider,
       });
 
-      await result.current.renderBugsInfo(pageNumber);
+      await result.current.loadBugsInfo(pageNumber);
 
       const bugs = result.current.bugsInfo.bugs;
       const bugsTotal = result.current.bugsInfo.bugsTotal;
@@ -62,7 +62,7 @@ describe("Given the renderBugsInfo function", () => {
         wrapper: AllContextsProvider,
       });
 
-      await result.current.renderBugsInfo(pageNumber);
+      await result.current.loadBugsInfo(pageNumber);
 
       const bugs = result.current.bugsInfo.bugs;
       const bugsTotal = result.current.bugsInfo.bugsTotal;

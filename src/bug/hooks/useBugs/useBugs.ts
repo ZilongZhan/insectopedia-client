@@ -7,7 +7,7 @@ import {
   deleteBugActionCreator,
   renderBugsInfoActionCreator,
 } from "../../slice/bugSlice";
-import type { BugFormData } from "../../types";
+import type { Bug, BugFormData } from "../../types";
 
 const useBugs = (): UseBugsStructure => {
   const bugsInfo = useAppSelector((state) => state.bugsReducer.bugsInfo);
@@ -15,7 +15,7 @@ const useBugs = (): UseBugsStructure => {
 
   const bugsClient = useMemo(() => new BugsClient(), []);
 
-  const renderBugsInfo = useCallback(
+  const loadBugsInfo = useCallback(
     async (pageNumber: number): Promise<void> => {
       const bugsInfo = await bugsClient.getBugsInfo(pageNumber);
 
@@ -42,11 +42,16 @@ const useBugs = (): UseBugsStructure => {
     dispatch(action);
   };
 
+  const loadBugDetails = async (bugId: string): Promise<Bug> => {
+    return await bugsClient.getBugById(bugId);
+  };
+
   return {
     bugsInfo,
-    renderBugsInfo,
+    loadBugsInfo: loadBugsInfo,
     addNewReport,
     deleteEntry,
+    loadBugDetails,
   };
 };
 

@@ -1,11 +1,13 @@
 import type { Class } from "../../data/types";
-import type { BugFormData, BugsInfo } from "../types";
+import type { Bug, BugFormData, BugsInfo } from "../types";
 
 export interface UseBugsStructure {
   bugsInfo: BugsInfo;
-  renderBugsInfo: (pageNumber: number) => Promise<void>;
+  currentBug?: Bug;
+  loadBugsInfo: (pageNumber: number) => Promise<void>;
   addNewReport: (bugFormData: BugFormData) => Promise<void>;
   deleteEntry: (bugId: string) => Promise<void>;
+  loadBugDetails: (bugId: string) => Promise<Bug>;
 }
 
 export interface UsePaginatorStructure {
