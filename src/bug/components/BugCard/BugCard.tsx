@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import Button from "../../../components/Button/Button";
 import DeleteButtonSvg from "../../../components/shared/DeleteButtonSvg/DeleteButtonSvg";
 import StarSvg from "../../../components/shared/StarSvg/StarSvg";
@@ -16,47 +17,45 @@ const BugCard: React.FC<BugCardProps> = ({
 }) => {
   const { deleteEntry } = useBugs();
 
-  const modifier = isFavorite ? " favorite-icon--true" : "";
   const loadingMode = index > 6 ? "lazy" : "eager";
 
-  const handleDelete = (): void => {
+  const handleDelete = (event: React.MouseEvent): void => {
+    event.preventDefault();
+    event.stopPropagation();
+
     deleteEntry(id);
   };
 
   return (
-    <article className="bug">
-      <Button
-        modifier="delete"
-        aria-label={`Delete ${name}`}
-        action={handleDelete}
-      >
-        <DeleteButtonSvg
-          className="delete-icon"
-          width={29}
-          height={16}
-          aria-hidden={true}
+    <Link to={`/details/${id}`}>
+      <article className="bug">
+        <Button
+          modifier="delete"
+          aria-label={`Delete ${name}`}
+          onClick={handleDelete}
+        >
+          <DeleteButtonSvg aria-hidden={true} />
+        </Button>
+        <img
+          loading={loadingMode}
+          className="bug__image"
+          src={imageUrl}
+          alt={imageAlt}
         />
-      </Button>
-      <img
-        loading={loadingMode}
-        className="bug__image"
-        src={imageUrl}
-        alt={imageAlt}
-        height={115}
-        width={75}
-      />
-      <div className="info-container info-container--card">
-        <h3 className="bug__name">{name}</h3>
-        <i className="bug__latin-name">{scientificName}</i>
-        <div className="buttons-container">
-          <StarSvg
-            className={`favorite-icon${modifier}`}
-            width={20}
-            height={19}
-          />
+        <div className="info-container info-container--card">
+          <h3 className="bug__name">{name}</h3>
+          <i className="bug__latin-name">{scientificName}</i>
+          <div className="buttons-container">
+            <StarSvg
+              modifier="card"
+              isFavorite={isFavorite}
+              width={20}
+              height={19}
+            />
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
 };
 

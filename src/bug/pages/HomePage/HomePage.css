@@ -4,13 +4,13 @@
 }
 
 .title-container__page-title {
-  color: #252525;
   margin: 0;
 }
 
 .title-container__icon {
-  fill: #f68522;
+  fill: var(--accent-color);
   width: 50px;
+  height: auto;
 }
 
 .bugs-total {

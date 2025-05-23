@@ -1,0 +1,8 @@
+.delete-icon {
+  width: 30px;
+  fill: #e15b64;
+
+  &:hover {
+    fill: #e61f2c;
+  }
+}

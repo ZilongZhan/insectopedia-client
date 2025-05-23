@@ -21,7 +21,7 @@ describe("Given the Button component", () => {
 
         render(<Button action={action}>{buttonText}</Button>);
 
-        const button = page.getByRole("button", { name: /hello world/i });
+        const button = page.getByRole("button", { name: buttonText });
 
         await user.click(button);
 

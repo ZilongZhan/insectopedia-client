@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
 
   const {
     bugsInfo: { bugs, bugsTotal },
-    renderBugsInfo,
+    loadBugsInfo: renderBugsInfo,
   } = useBugs();
   const [searchParams] = useSearchParams();
 
@@ -25,12 +25,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <div className="title-container">
-        <GrasshopperSvg
-          className="title-container__icon"
-          aria-hidden={true}
-          width={35}
-          height={21}
-        />
+        <GrasshopperSvg className="title-container__icon" aria-hidden={true} />
         <h2 className="title-container__page-title">Home</h2>
       </div>
       <div className="bugs-total">

@@ -1,0 +1,6 @@
+.go-back {
+  align-self: flex-start;
+  display: flex;
+  gap: 5px;
+  font-weight: bold;
+}

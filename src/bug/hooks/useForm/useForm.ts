@@ -43,13 +43,9 @@ const useForm = (): UseFormStructure => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    try {
-      addNewReport(bugFormData);
+    addNewReport(bugFormData);
 
-      navigate("/home");
-    } catch {
-      throw new Error("Error adding new bug");
-    }
+    navigate("/home");
   };
 
   const isValidData =

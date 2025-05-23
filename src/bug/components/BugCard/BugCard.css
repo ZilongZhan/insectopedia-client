@@ -1,7 +1,7 @@
 .bug {
   display: flex;
   flex-direction: column;
-  background-color: #d9d9d9;
+  background-color: var(--main-color);
   border-radius: 2px;
   height: 100%;
   position: relative;
@@ -37,26 +37,4 @@
 .buttons-container {
   display: flex;
   flex-direction: column;
-}
-
-.favorite-icon {
-  width: 25px;
-  fill: none;
-  stroke: #848484;
-  stroke-width: 2px;
-  align-self: flex-end;
-}
-
-.favorite-icon--true {
-  fill: #f2ce2d;
-  stroke: none;
-}
-
-.delete-icon {
-  width: 30px;
-  fill: #e15b64;
-
-  &:hover {
-    fill: #e61f2c;
-  }
 }
