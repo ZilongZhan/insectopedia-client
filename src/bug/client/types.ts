@@ -5,6 +5,7 @@ export interface BugsClientStructure {
   getBugsInfo: (pageNumber?: number) => Promise<BugsInfo>;
   addBug: (bugFormData: BugFormData) => Promise<Bug>;
   deleteBugById: (bugId: string) => Promise<Bug>;
+  getBugById: (bugId: string) => Promise<Bug>;
 }
 
 export interface BugResponse {

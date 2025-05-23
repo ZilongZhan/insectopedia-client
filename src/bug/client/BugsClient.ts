@@ -55,13 +55,25 @@ class BugsClient implements BugsClientStructure {
     return mapBugDtoToBug(bugDto);
   }
 
-  deleteBugById = async (bugId: string): Promise<Bug> => {
+  public deleteBugById = async (bugId: string): Promise<Bug> => {
     const response = await fetch(`${this.apiUrl}/bugs/${bugId}`, {
       method: "DELETE",
     });
 
     if (!response.ok) {
       throw new Error("Error deleting bug");
+    }
+
+    const { bug: bugDto } = (await response.json()) as BugResponse;
+
+    return mapBugDtoToBug(bugDto);
+  };
+
+  public getBugById = async (bugId: string): Promise<Bug> => {
+    const response = await fetch(`${this.apiUrl}/bugs/${bugId}`);
+
+    if (!response.ok) {
+      throw new Error("Error fetching bug");
     }
 
     const { bug: bugDto } = (await response.json()) as BugResponse;
