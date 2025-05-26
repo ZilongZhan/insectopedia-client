@@ -1,0 +1,9 @@
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader__text {
+  font-weight: bold;
+}
