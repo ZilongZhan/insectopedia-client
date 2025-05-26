@@ -8,22 +8,32 @@ import {
   renderBugsInfoActionCreator,
 } from "../../slice/bugSlice";
 import type { Bug, BugFormData } from "../../types";
+import useApp from "../../../hooks/useApp";
 
 const useBugs = (): UseBugsStructure => {
   const bugsInfo = useAppSelector((state) => state.bugsReducer.bugsInfo);
   const dispatch = useAppDispatch();
+  const { setIsLoading } = useApp();
 
   const bugsClient = useMemo(() => new BugsClient(), []);
 
   const loadBugsInfo = useCallback(
     async (pageNumber: number): Promise<void> => {
-      const bugsInfo = await bugsClient.getBugsInfo(pageNumber);
+      const timeOut = setTimeout(() => setIsLoading(true), 200);
 
-      const action = renderBugsInfoActionCreator(bugsInfo);
+      try {
+        const bugsInfo = await bugsClient.getBugsInfo(pageNumber);
 
-      dispatch(action);
+        const action = renderBugsInfoActionCreator(bugsInfo);
+
+        dispatch(action);
+      } finally {
+        clearTimeout(timeOut);
+      }
+
+      setIsLoading(false);
     },
-    [bugsClient, dispatch],
+    [bugsClient, dispatch, setIsLoading],
   );
 
   const addNewReport = async (bugFormData: BugFormData): Promise<void> => {

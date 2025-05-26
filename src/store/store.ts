@@ -1,7 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { bugsReducer } from "../bug/slice/bugSlice";
+import setupStore from "./setupStore";
 
-const store = configureStore({ reducer: { bugsReducer } });
+const store = setupStore();
 
 export default store;
 

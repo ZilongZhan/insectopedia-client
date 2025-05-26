@@ -16,10 +16,10 @@
 
 .button--delete {
   position: absolute;
-  padding: 0;
+  padding: 7px;
   font-size: 1rem;
-  top: 7px;
-  right: 7px;
+  top: 0;
+  right: 0;
 }
 
 .button--delete--big {
