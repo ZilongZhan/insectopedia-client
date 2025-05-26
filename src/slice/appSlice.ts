@@ -14,10 +14,6 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    setShowModal: (currentState, action: PayloadAction<boolean>): AppState => ({
-      ...currentState,
-      showModal: action.payload,
-    }),
     setIsLoading: (currentState, action: PayloadAction<boolean>): AppState => ({
       ...currentState,
       isLoading: action.payload,
@@ -27,9 +23,6 @@ const appSlice = createSlice({
 
 export const appReducer = appSlice.reducer;
 
-export const {
-  setIsLoading: setIsLoadingActionCreator,
-  setShowModal: setShowModalActionCreator,
-} = appSlice.actions;
+export const { setIsLoading: setIsLoadingActionCreator } = appSlice.actions;
 
 export default appSlice;

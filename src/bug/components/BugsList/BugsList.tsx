@@ -1,3 +1,5 @@
+import Loader from "../../../components/Loader/Loader";
+import useApp from "../../../hooks/useApp";
 import type { Bug } from "../../types";
 import BugCard from "../BugCard/BugCard";
 
@@ -8,7 +10,12 @@ interface BugsListProps {
 }
 
 const BugsList: React.FC<BugsListProps> = ({ bugs }) => {
+  const { isLoading } = useApp();
   const hasBugs = bugs.length > 0;
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return hasBugs ? (
     <ul className="bugs">

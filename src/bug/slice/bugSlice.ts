@@ -1,7 +1,9 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Bug, BugsInfo } from "../types";
 
-export type BugState = { bugsInfo: BugsInfo };
+export interface BugState {
+  bugsInfo: BugsInfo;
+}
 
 const initialState: BugState = {
   bugsInfo: {

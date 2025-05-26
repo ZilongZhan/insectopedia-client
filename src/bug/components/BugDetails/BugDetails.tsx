@@ -67,15 +67,15 @@ const BugDetails: React.FC = () => {
         <p className="section__bug-description">{description}</p>
         <ul className="bug-taxonomy">
           <li className="bug-taxonomy__rank">
-            <label className="rank__label">Phylum: </label>
+            <span className="rank__label">Phylum: </span>
             <span className="rank__name">{phylum}</span>
           </li>
           <li className="rank">
-            <label className="rank__label">Class: </label>
+            <span className="rank__label">Class: </span>
             <span className="rank__name">{className}</span>
           </li>
           <li className="taxonomic-ranks__rank">
-            <label className="rank__label">Order: </label>
+            <span className="rank__label">Order: </span>
             <span className="rank__name">{order}</span>
           </li>
         </ul>
