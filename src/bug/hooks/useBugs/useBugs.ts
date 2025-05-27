@@ -13,13 +13,18 @@ import useApp from "../../../hooks/useApp";
 const useBugs = (): UseBugsStructure => {
   const bugsInfo = useAppSelector((state) => state.bugsReducer.bugsInfo);
   const dispatch = useAppDispatch();
-  const { setIsLoading } = useApp();
+  const { setIsLoading, setModalConfig } = useApp();
 
   const bugsClient = useMemo(() => new BugsClient(), []);
 
+  const getLoadingTimeOut = useCallback(
+    (): NodeJS.Timeout => setTimeout(() => setIsLoading(true), 200),
+    [setIsLoading],
+  );
+
   const loadBugsInfo = useCallback(
     async (pageNumber: number): Promise<void> => {
-      const timeOut = setTimeout(() => setIsLoading(true), 200);
+      const timeOut = getLoadingTimeOut();
 
       try {
         const bugsInfo = await bugsClient.getBugsInfo(pageNumber);
@@ -27,41 +32,93 @@ const useBugs = (): UseBugsStructure => {
         const action = renderBugsInfoActionCreator(bugsInfo);
 
         dispatch(action);
+      } catch {
+        const errorMessage = "Failed to fetch bugs";
+
+        setModalConfig({
+          showModal: true,
+          isErrorModal: true,
+          message: errorMessage,
+        });
       } finally {
         clearTimeout(timeOut);
       }
 
       setIsLoading(false);
     },
-    [bugsClient, dispatch, setIsLoading],
+    [bugsClient, dispatch, setModalConfig, getLoadingTimeOut, setIsLoading],
   );
 
   const addNewReport = async (bugFormData: BugFormData): Promise<void> => {
-    const bug = await bugsClient.addBug(bugFormData);
+    try {
+      const bug = await bugsClient.addBug(bugFormData);
+      const modalMessage = "Report was sent successfully";
 
-    const action = addBugActionCreator(bug);
+      setModalConfig({
+        isErrorModal: false,
+        showModal: true,
+        message: modalMessage,
+      });
 
-    dispatch(action);
+      const action = addBugActionCreator(bug);
+
+      dispatch(action);
+    } catch {
+      const errorMessage = "Failed to send report";
+
+      setModalConfig({
+        showModal: true,
+        isErrorModal: true,
+        message: errorMessage,
+      });
+    }
   };
 
   const deleteEntry = async (bugId: string): Promise<void> => {
-    const bug = await bugsClient.deleteBugById(bugId);
+    try {
+      const bug = await bugsClient.deleteBugById(bugId);
+      const modalMessage = "Entry deleted successfully";
 
-    const action = deleteBugActionCreator(bug);
+      setModalConfig({
+        isErrorModal: false,
+        message: modalMessage,
+        showModal: true,
+      });
 
-    dispatch(action);
+      const action = deleteBugActionCreator(bug);
+
+      dispatch(action);
+    } catch {
+      const modalMessage = "Failed to delete entry";
+
+      setModalConfig({
+        isErrorModal: true,
+        showModal: true,
+        message: modalMessage,
+      });
+    }
   };
 
   const loadBugDetails = useCallback(
     async (bugId: string): Promise<Bug> => {
-      return await bugsClient.getBugById(bugId);
+      const timeout = getLoadingTimeOut();
+      let bug: Bug;
+
+      try {
+        bug = await bugsClient.getBugById(bugId);
+      } finally {
+        clearTimeout(timeout);
+      }
+
+      setIsLoading(false);
+      return bug;
     },
-    [bugsClient],
+    [bugsClient, setIsLoading, getLoadingTimeOut],
   );
 
   return {
     bugsInfo,
-    loadBugsInfo: loadBugsInfo,
+    loadBugsInfo,
     addNewReport,
     deleteEntry,
     loadBugDetails,
