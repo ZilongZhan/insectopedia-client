@@ -19,17 +19,14 @@ const BugCard: React.FC<BugCardProps> = ({
 
   const loadingMode = index > 6 ? "lazy" : "eager";
 
-  const handleDelete = (event: React.MouseEvent): void => {
-    event.preventDefault();
-    event.stopPropagation();
-
+  const handleDelete = (): void => {
     deleteEntry(id);
   };
 
   return (
     <div className="bug-wrapper">
-      <Link to={`/details/${id}`}>
-        <article className="bug">
+      <article className="bug">
+        <Link className="bug__details-link" to={`/details/${id}`}>
           <img
             loading={loadingMode}
             className="bug__image"
@@ -39,17 +36,14 @@ const BugCard: React.FC<BugCardProps> = ({
           <div className="info-container info-container--card">
             <h3 className="bug__name">{name}</h3>
             <i className="bug__latin-name">{scientificName}</i>
-            <div className="buttons-container">
-              <StarSvg
-                modifier="card"
-                isFavorite={isFavorite}
-                width={20}
-                height={19}
-              />
-            </div>
           </div>
-        </article>
-      </Link>
+        </Link>
+        <div className="buttons-container">
+          <Button modifier="favorite">
+            <StarSvg isFavorite={isFavorite} width={20} height={19} />
+          </Button>
+        </div>
+      </article>
       <Button
         modifier="delete"
         aria-label={`Delete ${name}`}

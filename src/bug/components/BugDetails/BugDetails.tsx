@@ -59,14 +59,16 @@ const BugDetails: React.FC = () => {
 
   return (
     <article className="bug-details">
-      <section className="bug-details__section">
+      <section className="bug-details__section bug-details__section--names">
         <div className="section__bug-names">
           <h3 className="section__bug-name">{name}</h3>
           <i className="section__bug-name section__bug-name--latin">
             {scientificName}
           </i>
         </div>
-        <StarSvg isFavorite={isFavorite} />
+        <Button modifier="favorite">
+          <StarSvg isFavorite={isFavorite} />
+        </Button>
       </section>
       <img className="bug-image" src={imageUrl} alt={imageAlt} />
       <section className="bug-details__section bug-details__section--vertical">
