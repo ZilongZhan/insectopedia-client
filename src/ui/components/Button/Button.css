@@ -41,5 +41,5 @@
 
 .button--favorite {
   padding: 0;
-  align-self: flex-end;
+  font-size: 0;
 }

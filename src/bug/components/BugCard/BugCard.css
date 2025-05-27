@@ -47,5 +47,5 @@
 .buttons-container {
   display: flex;
   flex-direction: column;
-  padding: 0 7px 3px 7px;
+  padding: 0 7px 7px 7px;
 }
