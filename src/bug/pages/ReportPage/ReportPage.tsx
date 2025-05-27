@@ -1,4 +1,4 @@
-import SnailSvg from "../../../components/shared/SnailSvg/SnailSvg";
+import SnailSvg from "../../../ui/components/shared/SnailSvg/SnailSvg";
 import BugForm from "../../components/BugForm/BugForm";
 
 const ReportPage: React.FC = () => {

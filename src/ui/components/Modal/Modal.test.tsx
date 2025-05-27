@@ -1,7 +1,7 @@
 import { render } from "vitest-browser-react";
 import Modal from "./Modal";
 import { page } from "@vitest/browser/context";
-import AllContextsProvider from "../../testUtils/AllContextsProvider";
+import AllContextsProvider from "../../../testUtils/AllContextsProvider";
 
 describe("Given the Modal component", () => {
   describe("When it receives 'Hello World'", () => {

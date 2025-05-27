@@ -1,9 +1,9 @@
 import { v4 as uuid } from "uuid";
-import classifications from "../../../data/classification";
+import classifications from "../../data/classification";
 import useForm from "../../hooks/useForm/useForm";
-import Button from "../../../components/Button/Button";
 
 import "./BugForm.css";
+import Button from "../../../ui/components/Button/Button";
 
 const BugForm: React.FC = () => {
   const {

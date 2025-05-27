@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import Button from "../../../components/Button/Button";
-import DeleteButtonSvg from "../../../components/shared/DeleteButtonSvg/DeleteButtonSvg";
-import StarSvg from "../../../components/shared/StarSvg/StarSvg";
 import useBugs from "../../hooks/useBugs/useBugs";
 import type { Bug } from "../../types";
+import StarSvg from "../../../ui/components/shared/StarSvg/StarSvg";
+import Button from "../../../ui/components/Button/Button";
+import DeleteButtonSvg from "../../../ui/components/shared/DeleteButtonSvg/DeleteButtonSvg";
 
 import "./BugCard.css";
 

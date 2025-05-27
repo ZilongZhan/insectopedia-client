@@ -1,8 +1,8 @@
 import type React from "react";
-import useApp from "../../hooks/useApp";
 import Button from "../Button/Button";
 import DeleteButtonSvg from "../shared/DeleteButtonSvg/DeleteButtonSvg";
 import ErrorSvg from "../shared/ErrorSvg/ErrorSvg";
+import useApp from "../../../hooks/useApp";
 
 import "./Modal.css";
 

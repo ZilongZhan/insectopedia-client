@@ -1,4 +1,4 @@
-import type { Class } from "../../data/types";
+import type { Class } from "../data/types";
 import type { Bug, BugFormData, BugsInfo } from "../types";
 
 export interface UseBugsStructure {

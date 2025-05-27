@@ -6,7 +6,7 @@ import store from "./store/store";
 import AppRouter from "./router/AppRouter";
 
 import "@fontsource-variable/noto-sans/index.css";
-import "./styles/styles.css";
+import "./ui/styles/styles.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

@@ -1,5 +1,4 @@
 import NotFoundSvg from "../../components/shared/NotFoundSvg/NotFoundSvg";
-
 import "./NotFoundPage.css";
 
 const NotFoundPage = () => {

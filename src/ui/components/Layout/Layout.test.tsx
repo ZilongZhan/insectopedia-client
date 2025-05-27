@@ -1,11 +1,11 @@
 import { render } from "vitest-browser-react";
 import { page, userEvent } from "@vitest/browser/context";
 import Layout from "./Layout";
-import { insect1, insect17, insectsCollection } from "../../bug/fixtures";
-import AppRouter from "../../router/AppRouter";
-import AllContextsProvider from "../../testUtils/AllContextsProvider";
-import fillBugForm from "../../testUtils/fillBugForm";
-import setupStore from "../../store/setupStore";
+import AllContextsProvider from "../../../testUtils/AllContextsProvider";
+import AppRouter from "../../../router/AppRouter";
+import { insect1, insect17, insectsCollection } from "../../../bug/fixtures";
+import setupStore from "../../../store/setupStore";
+import fillBugForm from "../../../testUtils/fillBugForm";
 
 describe("Given the Layout component", () => {
   const user = userEvent.setup();
