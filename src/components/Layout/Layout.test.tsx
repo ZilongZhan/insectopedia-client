@@ -1,10 +1,11 @@
 import { render } from "vitest-browser-react";
 import { page, userEvent } from "@vitest/browser/context";
-import { MemoryRouter } from "react-router";
 import Layout from "./Layout";
-import { insect17, insectsCollection } from "../../bug/fixtures";
+import { insect1, insect17, insectsCollection } from "../../bug/fixtures";
 import AppRouter from "../../router/AppRouter";
-import AllContextsProvider from "../../test-utils/AllContextsProvider";
+import AllContextsProvider from "../../testUtils/AllContextsProvider";
+import fillBugForm from "../../testUtils/fillBugForm";
+import setupStore from "../../store/setupStore";
 
 describe("Given the Layout component", () => {
   const user = userEvent.setup();
@@ -13,7 +14,7 @@ describe("Given the Layout component", () => {
     test("Then it should show 'Insectopedia inside a level 1 heading", () => {
       const expectedTitle = /insectopedia/i;
 
-      render(<Layout />, { wrapper: MemoryRouter });
+      render(<Layout />, { wrapper: AllContextsProvider });
 
       const appTitle = page.getByRole("heading", { name: expectedTitle });
 
@@ -21,7 +22,7 @@ describe("Given the Layout component", () => {
     });
 
     test("Then it should show a 'Home' link", () => {
-      render(<Layout />, { wrapper: MemoryRouter });
+      render(<Layout />, { wrapper: AllContextsProvider });
 
       const homeLink = page.getByRole("link", { name: /home/i });
 
@@ -47,6 +48,87 @@ describe("Given the Layout component", () => {
         });
 
         await expect.element(bugName).toBeInTheDocument();
+      });
+    });
+
+    describe(`And the user clicks the 'Delete ${insect1.name}'`, () => {
+      test("Then it should show 'Entry deleted successfully'", async () => {
+        render(
+          <AllContextsProvider
+            initialEntries={["/home"]}
+            customStore={setupStore()}
+          >
+            <AppRouter>
+              <Layout />
+            </AppRouter>
+          </AllContextsProvider>,
+        );
+
+        const deleteInsectOneButton = page.getByRole("button", {
+          name: new RegExp(`delete ${insect1.name}`, "i"),
+        });
+
+        await user.click(deleteInsectOneButton);
+
+        const modalMessage = page.getByText(/entry deleted successfully/i);
+
+        await expect.element(modalMessage).toBeInTheDocument();
+      });
+
+      describe("And the user clicks the 'Close modal' button", () => {
+        test("Then it should not show 'Entry deleted successfully'", async () => {
+          render(
+            <AllContextsProvider
+              initialEntries={["/home"]}
+              customStore={setupStore()}
+            >
+              <AppRouter>
+                <Layout />
+              </AppRouter>
+            </AllContextsProvider>,
+          );
+
+          const deleteInsectOneButton = page.getByRole("button", {
+            name: new RegExp(`delete ${insect1.name}`, "i"),
+          });
+
+          await user.click(deleteInsectOneButton);
+
+          const closeModalButton = page.getByRole("button", {
+            name: /close modal/i,
+          });
+
+          await user.click(closeModalButton);
+
+          const modalMessage = page.getByText(/entry deleted successfully/i);
+
+          await expect.element(modalMessage).not.toBeInTheDocument();
+        });
+      });
+
+      test("Then it should show 'Home' inside a heading", async () => {
+        const expectedTitle = /home/i;
+
+        render(
+          <AllContextsProvider
+            initialEntries={["/home"]}
+            customStore={setupStore()}
+          >
+            <AppRouter>
+              <Layout />
+            </AppRouter>
+          </AllContextsProvider>,
+        );
+
+        const deleteInsectOneButton = page.getByRole("button", {
+          name: new RegExp(`delete ${insect1.name}`, "i"),
+        });
+
+        await user.click(deleteInsectOneButton);
+
+        const pageTitle = page.getByRole("heading", { name: expectedTitle });
+
+        await expect.element(pageTitle).toBeInTheDocument();
       });
     });
   });
@@ -151,24 +233,6 @@ describe("Given the Layout component", () => {
     });
 
     describe("And the user fills the 'Common name', 'Latin name', phylum, class, and order inputs of the 'Classification' section, 'Link to image', and 'Description' required fields", () => {
-      const bugCommonName = "Housefly";
-      const bugLatinName = "Musca domestica";
-      const bugPhylum = "Arthropoda";
-      const bugClass = "Insecta";
-      const bugOrder = "Diptera";
-      const bugImageLink = "http://housefly.com/housefly.webp";
-      const bugDescription =
-        "The housefly (Musca domestica) is a fly of the suborder Cyclorrhapha. It possibly originated in the Middle East, and spread around the world as a commensal of humans.";
-
-      const commonNameInputLabel = /common name/i;
-      const latinNameInputLabel = /latin name/i;
-      const classificationSectionLabel = /classification/i;
-      const phylumSelectDefaultOption = /phylum/i;
-      const classSelectDefaultOption = /class/i;
-      const orderSelectDefaultOption = /order/i;
-      const imageLinkInputLabel = /link to image/i;
-      const descriptionInputLabel = /description/i;
-
       const buttonText = /send report/i;
 
       test("Then the 'Send report' button should be enabled", async () => {
@@ -180,30 +244,7 @@ describe("Given the Layout component", () => {
           </AllContextsProvider>,
         );
 
-        const commonNameInput = page.getByLabelText(commonNameInputLabel);
-        const latinNameInput = page.getByLabelText(latinNameInputLabel);
-        const classificationSection = page.getByRole("group", {
-          name: classificationSectionLabel,
-        });
-        const phylumSelect = classificationSection.getByRole("combobox", {
-          name: phylumSelectDefaultOption,
-        });
-        const classSelect = classificationSection.getByRole("combobox", {
-          name: classSelectDefaultOption,
-        });
-        const orderSelect = classificationSection.getByRole("combobox", {
-          name: orderSelectDefaultOption,
-        });
-        const imageLinkInput = page.getByLabelText(imageLinkInputLabel);
-        const descriptionInput = page.getByLabelText(descriptionInputLabel);
-
-        await user.type(commonNameInput, bugCommonName);
-        await user.type(latinNameInput, bugLatinName);
-        await phylumSelect.selectOptions(bugPhylum);
-        await classSelect.selectOptions(bugClass);
-        await orderSelect.selectOptions(bugOrder);
-        await user.type(imageLinkInput, bugImageLink);
-        await user.type(descriptionInput, bugDescription);
+        await fillBugForm(page, user);
 
         const sendReportButton = page.getByRole("button", {
           name: buttonText,
@@ -213,52 +254,75 @@ describe("Given the Layout component", () => {
       });
 
       describe("And the user clicks the 'Send report' button", () => {
-        test("Then it should show 'Home'", async () => {
-          const expectedTitle = /home/i;
-
+        test("Then it should show 'Report was sent successfully", async () => {
           render(
-            <AllContextsProvider initialEntries={["/report"]}>
+            <AllContextsProvider
+              initialEntries={["/report"]}
+              customStore={setupStore()}
+            >
               <AppRouter>
                 <Layout />
               </AppRouter>
             </AllContextsProvider>,
           );
 
-          const commonNameInput = page.getByLabelText(commonNameInputLabel);
-          const latinNameInput = page.getByLabelText(latinNameInputLabel);
-          const classificationSection = page.getByRole("group", {
-            name: classificationSectionLabel,
-          });
-          const phylumSelect = classificationSection.getByRole("combobox", {
-            name: phylumSelectDefaultOption,
-          });
-          const classSelect = classificationSection.getByRole("combobox", {
-            name: classSelectDefaultOption,
-          });
-          const orderSelect = classificationSection.getByRole("combobox", {
-            name: orderSelectDefaultOption,
-          });
-          const imageLinkInput = page.getByLabelText(imageLinkInputLabel);
-          const descriptionInput = page.getByLabelText(descriptionInputLabel);
-
-          await user.type(commonNameInput, bugCommonName);
-          await user.type(latinNameInput, bugLatinName);
-          await phylumSelect.selectOptions(bugPhylum);
-          await classSelect.selectOptions(bugClass);
-          await orderSelect.selectOptions(bugOrder);
-          await user.type(imageLinkInput, bugImageLink);
-          await user.type(descriptionInput, bugDescription);
+          await fillBugForm(page, user);
 
           const sendReportButton = page.getByRole("button", {
             name: buttonText,
           });
 
+          await expect.element(sendReportButton).toBeEnabled();
           await user.click(sendReportButton);
 
-          const pageTitle = page.getByRole("heading", { name: expectedTitle });
+          const feedbackMessage = page.getByText(
+            /report was sent successfully/i,
+          );
 
-          await expect.element(pageTitle).toBeInTheDocument();
+          await expect.element(feedbackMessage).toBeInTheDocument();
         });
+      });
+    });
+  });
+
+  describe(`When it renders on /details/${insect1.id}`, () => {
+    test("Then it should show 'Insect One' inside a heading", async () => {
+      render(
+        <AllContextsProvider initialEntries={[`/details/${insect1.id}`]}>
+          <AppRouter>
+            <Layout />
+          </AppRouter>
+        </AllContextsProvider>,
+      );
+
+      const bugName = page.getByRole("heading", {
+        name: new RegExp(insect1.name, "i"),
+      });
+
+      await expect.element(bugName).toBeInTheDocument();
+    });
+
+    describe("And the user clicks the 'Delete entry' button", () => {
+      test("Then it should show 'Entry deleted sucessfully'", async () => {
+        const buttonText = /delete entry/i;
+
+        render(
+          <AllContextsProvider initialEntries={[`/details/${insect1.id}`]}>
+            <AppRouter>
+              <Layout />
+            </AppRouter>
+          </AllContextsProvider>,
+        );
+
+        const deleteEntryButton = page.getByRole("button", {
+          name: buttonText,
+        });
+
+        await user.click(deleteEntryButton);
+
+        const modalMessage = page.getByText(/entry deleted successfully/i);
+
+        await expect.element(modalMessage).toBeInTheDocument();
       });
     });
   });

@@ -9,7 +9,7 @@ const fillBugForm = async (
   const bugPhylum = "Arthropoda";
   const bugClass = "Insecta";
   const bugOrder = "Diptera";
-  const bugImageLink = "http://housefly.com/housefly.webp";
+  const bugImageLink = "https://housefly.com/housefly.webp";
   const bugDescription =
     "The housefly (Musca domestica) is a fly of the suborder Cyclorrhapha. It possibly originated in the Middle East, and spread around the world as a commensal of humans.";
 

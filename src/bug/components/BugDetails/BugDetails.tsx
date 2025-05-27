@@ -30,7 +30,7 @@ const BugDetails: React.FC = () => {
   }, [bugId, loadBugDetails]);
 
   if (isLoading) {
-    <Loader />;
+    return <Loader />;
   }
 
   if (!bug || !bugId) {
