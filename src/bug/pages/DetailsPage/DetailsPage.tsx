@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import StinkBugSvg from "../../../components/shared/StinkBugSvg/StinkBugSvg";
 import BugDetails from "../../components/BugDetails/BugDetails";
-import GoBackSvg from "../../../components/shared/GoBackSvg/GoBackSvg";
 
 import "./DetailsPage.css";
+import StinkBugSvg from "../../../ui/components/shared/StinkBugSvg/StinkBugSvg";
+import GoBackSvg from "../../../ui/components/shared/GoBackSvg/GoBackSvg";
 
 const DetailsPage: React.FC = () => {
   return (

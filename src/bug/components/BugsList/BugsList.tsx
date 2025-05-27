@@ -1,5 +1,5 @@
-import Loader from "../../../components/Loader/Loader";
 import useApp from "../../../hooks/useApp";
+import Loader from "../../../ui/components/Loader/Loader";
 import type { Bug } from "../../types";
 import BugCard from "../BugCard/BugCard";
 

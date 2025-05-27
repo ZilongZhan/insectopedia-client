@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { BugFormData } from "../../types";
 import type { UseFormStructure } from "../types";
-import classifications from "../../../data/classification";
+import classifications from "../../data/classification";
 import useBugs from "../useBugs/useBugs";
 import { useNavigate } from "react-router";
 

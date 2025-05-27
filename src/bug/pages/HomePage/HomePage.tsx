@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router";
-import GrasshopperSvg from "../../../components/shared/GrasshopperSvg/GrasshopperSvg";
 import BugsList from "../../components/BugsList/BugsList";
 import useBugs from "../../hooks/useBugs/useBugs";
 import Paginator from "../../components/Paginator/Paginator";
 
 import "./HomePage.css";
+import GrasshopperSvg from "../../../ui/components/shared/GrasshopperSvg/GrasshopperSvg";
 
 const HomePage: React.FC = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });

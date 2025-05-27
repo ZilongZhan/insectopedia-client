@@ -1,14 +1,14 @@
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import useBugs from "../../hooks/useBugs/useBugs";
-import DangerSvg from "../../../components/shared/DangerSvg/DangerSvg";
-import StarSvg from "../../../components/shared/StarSvg/StarSvg";
-import Button from "../../../components/Button/Button";
 import type { Bug } from "../../types";
+import useApp from "../../../hooks/useApp";
+import Loader from "../../../ui/components/Loader/Loader";
+import StarSvg from "../../../ui/components/shared/StarSvg/StarSvg";
+import DangerSvg from "../../../ui/components/shared/DangerSvg/DangerSvg";
+import Button from "../../../ui/components/Button/Button";
 
 import "./BugDetails.css";
-import useApp from "../../../hooks/useApp";
-import Loader from "../../../components/Loader/Loader";
 
 const BugDetails: React.FC = () => {
   const { isLoading } = useApp();
