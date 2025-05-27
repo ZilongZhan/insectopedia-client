@@ -20,7 +20,7 @@ export const insect2Dto: BugDto = {
   imageUrl: "/images/insect2.jpg",
   description: "Description of Insect Two",
   isDangerous: true,
-  isFavorite: false,
+  isFavorite: true,
   phylum: "PlaceholderPhylum",
   className: "PlaceholderClass",
   order: "PlaceholderOrder",

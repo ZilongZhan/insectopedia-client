@@ -80,6 +80,20 @@ class BugsClient implements BugsClientStructure {
 
     return mapBugDtoToBug(bugDto);
   };
+
+  public toggleIsFavorite = async (bugId: string): Promise<Bug> => {
+    const response = await fetch(`${this.apiUrl}/bugs/${bugId}`, {
+      method: "PATCH",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to patch bug");
+    }
+
+    const { bug: bugDto } = (await response.json()) as BugResponse;
+
+    return mapBugDtoToBug(bugDto);
+  };
 }
 
 export default BugsClient;

@@ -6,6 +6,7 @@ export interface BugsClientStructure {
   addBug: (bugFormData: BugFormData) => Promise<Bug>;
   deleteBugById: (bugId: string) => Promise<Bug>;
   getBugById: (bugId: string) => Promise<Bug>;
+  toggleIsFavorite: (bugId: string) => Promise<Bug>;
 }
 
 export interface BugResponse {
