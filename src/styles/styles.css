@@ -1,6 +1,7 @@
 :root {
   --main-color: #d9d9d9;
   --accent-color: #f68522;
+  --background-color: #efefef;
 }
 
 *,
@@ -10,7 +11,7 @@
 }
 
 body {
-  background-color: #efefef;
+  background-color: var(--background-color);
   margin: 0;
   font-family: "Noto Sans Variable", sans-serif;
   color: #252525;
@@ -39,7 +40,8 @@ input,
 select,
 textarea,
 button,
-fieldset {
+fieldset,
+dialog {
   padding: 0;
   color: inherit;
   font: inherit;
