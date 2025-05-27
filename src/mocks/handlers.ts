@@ -2,9 +2,10 @@ import { http, HttpResponse } from "msw";
 import {
   insect1Dto,
   insect2Dto,
+  insect3Dto,
   insectsDtoCollection,
 } from "../bug/dto/fixtures";
-import type { BugsInfoDto } from "../bug/dto/types";
+import type { BugDto, BugsInfoDto } from "../bug/dto/types";
 import checkUrlExists from "./checkUrlExists/checkUrlExists";
 import type { BugFormData } from "../bug/types";
 
@@ -71,6 +72,28 @@ export const handlers = [
   }),
 
   http.delete(`${apiUrl}/bugs/${insect2Dto._id}`, () => {
+    return HttpResponse.json(null, { status: 404 });
+  }),
+
+  http.patch(`${apiUrl}/bugs/${insect1Dto._id}`, () => {
+    const patchedInsect1Dto: BugDto = {
+      ...insect1Dto,
+      isFavorite: true,
+    };
+
+    return HttpResponse.json({ bug: patchedInsect1Dto });
+  }),
+
+  http.patch(`${apiUrl}/bugs/${insect2Dto._id}`, () => {
+    const patchedInsect2Dto: BugDto = {
+      ...insect2Dto,
+      isFavorite: false,
+    };
+
+    return HttpResponse.json({ bug: patchedInsect2Dto });
+  }),
+
+  http.patch(`${apiUrl}/bugs/${insect3Dto._id}`, () => {
     return HttpResponse.json(null, { status: 404 });
   }),
 ];
