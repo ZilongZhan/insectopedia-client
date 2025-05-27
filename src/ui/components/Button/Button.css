@@ -38,3 +38,8 @@
   background-color: #000000;
   opacity: 60%;
 }
+
+.button--favorite {
+  padding: 0;
+  align-self: flex-end;
+}

@@ -3,21 +3,18 @@ import type { SVGProps } from "react";
 import "./StarSvg.css";
 
 interface StarSvgProps extends SVGProps<SVGSVGElement> {
-  modifier?: string;
   isFavorite?: boolean;
 }
 
 const StarSvg: React.FC<StarSvgProps> = ({
-  modifier,
   isFavorite = false,
   ...svgProps
 }) => {
-  const modifierClass = modifier ? ` favorite-icon--${modifier}` : "";
-  const favoriteStateClass = isFavorite ? " favorite-icon--true" : "";
+  const modifier = isFavorite ? " favorite-icon--true" : "";
 
   return (
     <svg
-      className={`favorite-icon${modifierClass}${favoriteStateClass}`}
+      className={`favorite-icon${modifier}`}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       height="800px"

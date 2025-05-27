@@ -5,10 +5,6 @@
   stroke-width: 2px;
 }
 
-.favorite-icon--card {
-  align-self: flex-end;
-}
-
 .favorite-icon--true {
   fill: #f2ce2d;
   stroke: none;
