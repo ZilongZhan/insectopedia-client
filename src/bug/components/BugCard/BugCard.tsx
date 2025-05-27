@@ -27,35 +27,37 @@ const BugCard: React.FC<BugCardProps> = ({
   };
 
   return (
-    <Link to={`/details/${id}`}>
-      <article className="bug">
-        <Button
-          modifier="delete"
-          aria-label={`Delete ${name}`}
-          onClick={handleDelete}
-        >
-          <DeleteButtonSvg aria-hidden={true} />
-        </Button>
-        <img
-          loading={loadingMode}
-          className="bug__image"
-          src={imageUrl}
-          alt={imageAlt}
-        />
-        <div className="info-container info-container--card">
-          <h3 className="bug__name">{name}</h3>
-          <i className="bug__latin-name">{scientificName}</i>
-          <div className="buttons-container">
-            <StarSvg
-              modifier="card"
-              isFavorite={isFavorite}
-              width={20}
-              height={19}
-            />
+    <div className="bug-wrapper">
+      <Link to={`/details/${id}`}>
+        <article className="bug">
+          <img
+            loading={loadingMode}
+            className="bug__image"
+            src={imageUrl}
+            alt={imageAlt}
+          />
+          <div className="info-container info-container--card">
+            <h3 className="bug__name">{name}</h3>
+            <i className="bug__latin-name">{scientificName}</i>
+            <div className="buttons-container">
+              <StarSvg
+                modifier="card"
+                isFavorite={isFavorite}
+                width={20}
+                height={19}
+              />
+            </div>
           </div>
-        </div>
-      </article>
-    </Link>
+        </article>
+      </Link>
+      <Button
+        modifier="delete"
+        aria-label={`Delete ${name}`}
+        onClick={handleDelete}
+      >
+        <DeleteButtonSvg aria-hidden={true} />
+      </Button>
+    </div>
   );
 };
 

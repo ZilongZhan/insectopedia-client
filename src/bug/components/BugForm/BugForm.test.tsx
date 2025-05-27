@@ -1,7 +1,7 @@
 import { render } from "vitest-browser-react";
 import { page, userEvent } from "@vitest/browser/context";
 import BugForm from "./BugForm";
-import AllContextsProvider from "../../../test-utils/AllContextsProvider";
+import AllContextsProvider from "../../../testUtils/AllContextsProvider";
 
 describe("Given the BugForm component", () => {
   const user = userEvent.setup();

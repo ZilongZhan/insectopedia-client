@@ -37,6 +37,7 @@
 
 .section__bug-name {
   font-weight: bold;
+  margin: 0;
 }
 
 .section__bug-name--latin {

@@ -2,7 +2,7 @@ import { render } from "vitest-browser-react";
 import { page } from "@vitest/browser/context";
 import BugCard from "./BugCard";
 import { insect1 } from "../../fixtures";
-import AllContextsProvider from "../../../test-utils/AllContextsProvider";
+import AllContextsProvider from "../../../testUtils/AllContextsProvider";
 
 describe("Given the BugCard component", () => {
   describe("When it receives insect 1", () => {
