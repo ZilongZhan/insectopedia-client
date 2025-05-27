@@ -1,15 +1,17 @@
 import { render } from "vitest-browser-react";
 import { page } from "@vitest/browser/context";
 import HomePage from "./HomePage";
-import AllContextsProvider from "../../../test-utils/AllContextsProvider";
+import AllContextsProvider from "../../../testUtils/AllContextsProvider";
 import { insectsCollection } from "../../fixtures";
 
 describe("Given the HomePage component", () => {
   describe("When it renders", () => {
     test("Then it should show 'Home' inside a heading", async () => {
+      const expectedTitle = /home/i;
+
       render(<HomePage />, { wrapper: AllContextsProvider });
 
-      const pageTitle = page.getByRole("heading", { name: /home/i });
+      const pageTitle = page.getByRole("heading", { name: expectedTitle });
 
       expect(pageTitle).toBeInTheDocument();
     });

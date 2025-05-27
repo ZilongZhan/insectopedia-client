@@ -1,7 +1,7 @@
 import { renderHook } from "vitest-browser-react";
 import useBugs from "../useBugs";
 import { insect1 } from "../../../fixtures";
-import AllContextsProvider from "../../../../test-utils/AllContextsProvider";
+import AllContextsProvider from "../../../../testUtils/AllContextsProvider";
 
 describe("Given the loadBugDetails function", () => {
   describe("When it receives Insect One's ID", () => {

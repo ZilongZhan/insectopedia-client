@@ -1,14 +1,16 @@
 import { render } from "vitest-browser-react";
 import { page } from "@vitest/browser/context";
 import ReportPage from "./ReportPage";
-import AllContextsProvider from "../../../test-utils/AllContextsProvider";
+import AllContextsProvider from "../../../testUtils/AllContextsProvider";
 
 describe("Given the ReportPage component", () => {
   describe("When it renders", () => {
     test("Then it should show 'New report' inside a heading", () => {
+      const expectedTitle = /new report/i;
+
       render(<ReportPage />, { wrapper: AllContextsProvider });
 
-      const pageTitle = page.getByRole("heading", { name: /new report/i });
+      const pageTitle = page.getByRole("heading", { name: expectedTitle });
 
       expect(pageTitle).toBeInTheDocument();
     });

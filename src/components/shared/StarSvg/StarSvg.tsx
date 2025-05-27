@@ -23,7 +23,6 @@ const StarSvg: React.FC<StarSvgProps> = ({
       height="800px"
       width="800px"
       version="1.1"
-      id="Capa_1"
       viewBox="0 0 47.94 47.94"
       xmlSpace="preserve"
       {...svgProps}

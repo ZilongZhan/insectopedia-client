@@ -42,6 +42,8 @@ describe("Given the AppRouter component", () => {
 
   describe("When it renders on path /home", () => {
     test("Then it should show 'Home' inside a heading", () => {
+      const expectedTitle = /home/i;
+
       render(
         <MemoryRouter initialEntries={["/home"]}>
           <Provider store={store}>
@@ -50,7 +52,7 @@ describe("Given the AppRouter component", () => {
         </MemoryRouter>,
       );
 
-      const pageTitle = page.getByRole("heading", { name: /home/i });
+      const pageTitle = page.getByRole("heading", { name: expectedTitle });
 
       expect(pageTitle).toBeInTheDocument();
     });

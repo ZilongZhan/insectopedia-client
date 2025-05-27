@@ -1,6 +1,6 @@
 import { renderHook } from "vitest-browser-react";
 import { insectsCollection } from "../../../fixtures";
-import AllContextsProvider from "../../../../test-utils/AllContextsProvider";
+import AllContextsProvider from "../../../../testUtils/AllContextsProvider";
 import useBugs from "../useBugs";
 import type { Bug } from "../../../types";
 

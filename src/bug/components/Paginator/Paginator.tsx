@@ -27,28 +27,35 @@ const Paginator: React.FC<PaginatorProps> & PaginatorSubcomponents = ({
   const previousPage = pageNumber - 1;
   const nextPage = pageNumber + 1;
 
-  return (
-    <div className="paginator">
-      <Paginator.Link
-        pageNumber={previousPage}
-        pagesTotal={pagesTotal}
-        label="<"
-      />
+  const areBugsAvailable = bugsTotal > 0;
 
-      <ul className="paginator__list">
-        <Paginator.Indicator
+  return (
+    areBugsAvailable && (
+      <div className="paginator">
+        <Paginator.Link
           pageNumber={previousPage}
           pagesTotal={pagesTotal}
+          label="<"
         />
-        <Paginator.Indicator
-          pageNumber={pageNumber}
+        <ul className="paginator__list">
+          <Paginator.Indicator
+            pageNumber={previousPage}
+            pagesTotal={pagesTotal}
+          />
+          <Paginator.Indicator
+            pageNumber={pageNumber}
+            pagesTotal={pagesTotal}
+            isCurrent={true}
+          />
+          <Paginator.Indicator pageNumber={nextPage} pagesTotal={pagesTotal} />
+        </ul>
+        <Paginator.Link
+          pageNumber={nextPage}
           pagesTotal={pagesTotal}
-          isCurrent={true}
+          label=">"
         />
-        <Paginator.Indicator pageNumber={nextPage} pagesTotal={pagesTotal} />
-      </ul>
-      <Paginator.Link pageNumber={nextPage} pagesTotal={pagesTotal} label=">" />
-    </div>
+      </div>
+    )
   );
 };
 

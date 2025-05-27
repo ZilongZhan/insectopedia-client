@@ -7,8 +7,11 @@ import Button from "../../../components/Button/Button";
 import type { Bug } from "../../types";
 
 import "./BugDetails.css";
+import useApp from "../../../hooks/useApp";
+import Loader from "../../../components/Loader/Loader";
 
 const BugDetails: React.FC = () => {
+  const { isLoading } = useApp();
   const { loadBugDetails, deleteEntry } = useBugs();
   const { bugId } = useParams<{ bugId: string }>();
   const [bug, setBug] = useState<Bug | null>(null);
@@ -25,6 +28,10 @@ const BugDetails: React.FC = () => {
       setBug(bug);
     })();
   }, [bugId, loadBugDetails]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!bug || !bugId) {
     return <span>Bug not available</span>;
@@ -54,7 +61,7 @@ const BugDetails: React.FC = () => {
     <article className="bug-details">
       <section className="bug-details__section">
         <div className="section__bug-names">
-          <span className="section__bug-name">{name}</span>
+          <h3 className="section__bug-name">{name}</h3>
           <i className="section__bug-name section__bug-name--latin">
             {scientificName}
           </i>

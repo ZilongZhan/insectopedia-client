@@ -1,6 +1,6 @@
 import { renderHook } from "vitest-browser-react";
 import useApp from "../useApp";
-import AllContextsProvider from "../../test-utils/AllContextsProvider";
+import AllContextsProvider from "../../testUtils/AllContextsProvider";
 
 describe("Given the setIsLoading function", () => {
   describe("When it receives true", () => {
