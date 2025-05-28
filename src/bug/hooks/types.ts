@@ -7,7 +7,8 @@ export interface UseBugsStructure {
   loadBugsInfo: (pageNumber: number) => Promise<void>;
   addNewReport: (bugFormData: BugFormData) => Promise<void>;
   deleteEntry: (bugId: string) => Promise<void>;
-  loadBugDetails: (bugId: string) => Promise<Bug>;
+  loadBugDetails: (bugId: string) => Promise<Bug | null>;
+  toggleIsFavorite: (bugId: string) => Promise<Bug | null>;
 }
 
 export interface UsePaginatorStructure {

@@ -28,6 +28,14 @@ describe("Given the Layout component", () => {
 
       expect(homeLink).toBeInTheDocument();
     });
+
+    test("Then it should show a 'Report' link", () => {
+      render(<Layout />, { wrapper: AllContextsProvider });
+
+      const reportLink = page.getByRole("link", { name: /report/i });
+
+      expect(reportLink).toBeInTheDocument();
+    });
   });
 
   describe("When it renders on /home", () => {
@@ -129,6 +137,113 @@ describe("Given the Layout component", () => {
         const pageTitle = page.getByRole("heading", { name: expectedTitle });
 
         await expect.element(pageTitle).toBeInTheDocument();
+      });
+    });
+
+    describe(`And the user clicks the 'Add ${insect1.name} to favorites' button`, () => {
+      test(`Then it should show a 'Remove ${insect1.name} from favorites button'`, async () => {
+        render(
+          <AllContextsProvider initialEntries={["/home"]}>
+            <AppRouter>
+              <Layout />
+            </AppRouter>
+          </AllContextsProvider>,
+        );
+
+        const addToFavoritesButton = page.getByRole("button", {
+          name: new RegExp(`add ${insect1.name} to favorites`, "i"),
+        });
+
+        await user.click(addToFavoritesButton);
+
+        const removeFromFavoritesButton = page.getByRole("button", {
+          name: new RegExp(`remove ${insect1.name} from favorites`, "i"),
+        });
+
+        await expect.element(removeFromFavoritesButton).toBeInTheDocument();
+      });
+    });
+
+    describe(`And the user clicks '${insect1.name}'`, () => {
+      test("Then it should show 'Details' inside a heading", async () => {
+        render(
+          <AllContextsProvider
+            initialEntries={["/home"]}
+            customStore={setupStore()}
+          >
+            <AppRouter>
+              <Layout />
+            </AppRouter>
+          </AllContextsProvider>,
+        );
+
+        const bugName = page.getByRole("heading", {
+          name: new RegExp(insect1.name),
+        });
+
+        await user.click(bugName);
+
+        const pageTitle = page.getByRole("heading", { name: /details/i });
+
+        expect(pageTitle).toBeInTheDocument();
+      });
+
+      test(`Then it should show a 'Add ${insect1.name} to favorites' button`, async () => {
+        render(
+          <AllContextsProvider
+            initialEntries={["/home"]}
+            customStore={setupStore()}
+          >
+            <AppRouter>
+              <Layout />
+            </AppRouter>
+          </AllContextsProvider>,
+        );
+
+        const bugName = page.getByRole("heading", {
+          name: new RegExp(`\\b${insect1.name}\\b`, "i"),
+        });
+
+        await user.click(bugName);
+
+        const addToFavoritesButton = page.getByRole("button", {
+          name: new RegExp(`add ${insect1.name} to favorites`, "i"),
+        });
+
+        await expect.element(addToFavoritesButton).toBeInTheDocument();
+      });
+
+      describe(`And the user clicks the 'Add ${insect1.name} to favorites'`, () => {
+        test(`Then it should show a 'Remove ${insect1.name} from favorites`, async () => {
+          render(
+            <AllContextsProvider
+              initialEntries={["/home"]}
+              customStore={setupStore()}
+            >
+              <AppRouter>
+                <Layout />
+              </AppRouter>
+            </AllContextsProvider>,
+          );
+
+          const bugName = page.getByRole("heading", {
+            name: new RegExp(`\\b${insect1.name}\\b`, "i"),
+          });
+
+          await user.click(bugName);
+
+          const addToFavoritesButton = page.getByRole("button", {
+            name: new RegExp(`add ${insect1.name} to favorites`, "i"),
+          });
+
+          await user.click(addToFavoritesButton);
+
+          const removeFromFavoritesButton = page.getByRole("button", {
+            name: new RegExp(`remove ${insect1.name} from favorites`, "i"),
+          });
+
+          await expect.element(removeFromFavoritesButton).toBeInTheDocument();
+        });
       });
     });
   });

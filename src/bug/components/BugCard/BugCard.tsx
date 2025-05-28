@@ -15,12 +15,19 @@ const BugCard: React.FC<BugCardProps> = ({
   bug: { id, imageUrl, imageAlt, isFavorite, name, scientificName },
   index,
 }) => {
-  const { deleteEntry } = useBugs();
+  const { deleteEntry, toggleIsFavorite } = useBugs();
 
   const loadingMode = index > 6 ? "lazy" : "eager";
+  const isFavoriteButtonLabel = isFavorite
+    ? `Remove ${name} from favorites`
+    : `Add ${name} to favorites`;
 
   const handleDelete = (): void => {
     deleteEntry(id);
+  };
+
+  const handleToggleIsFavorite = (): void => {
+    toggleIsFavorite(id);
   };
 
   return (
@@ -39,15 +46,24 @@ const BugCard: React.FC<BugCardProps> = ({
           </div>
         </Link>
         <div className="buttons-container">
-          <Button modifier="favorite">
-            <StarSvg isFavorite={isFavorite} width={20} height={19} />
+          <Button
+            modifier="favorite"
+            aria-label={isFavoriteButtonLabel}
+            action={handleToggleIsFavorite}
+          >
+            <StarSvg
+              isFavorite={isFavorite}
+              aria-hidden={true}
+              width={20}
+              height={19}
+            />
           </Button>
         </div>
       </article>
       <Button
         modifier="delete"
         aria-label={`Delete ${name}`}
-        onClick={handleDelete}
+        action={handleDelete}
       >
         <DeleteButtonSvg aria-hidden={true} />
       </Button>
