@@ -39,7 +39,8 @@
   opacity: 60%;
 }
 
-.button--favorite {
+.button--favorite,
+.button--edit {
   padding: 0;
   font-size: 0;
 }

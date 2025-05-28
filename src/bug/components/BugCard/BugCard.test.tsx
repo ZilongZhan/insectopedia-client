@@ -38,7 +38,7 @@ describe("Given the BugCard component", () => {
       expect(bugLatinName).toBeInTheDocument();
     });
 
-    test("Then it should show a 'Add to favorites' button", () => {
+    test(`Then it should show a 'Add ${insect1.name} to favorites' button`, () => {
       render(<BugCard bug={insect1} index={0} />, {
         wrapper: AllContextsProvider,
       });
@@ -62,6 +62,20 @@ describe("Given the BugCard component", () => {
       });
 
       expect(deleteButton).toBeInTheDocument();
+    });
+
+    test("Then it should show a 'Edit Insect One' button", () => {
+      const buttonText = new RegExp(`edit ${insect1.name}`, "i");
+
+      render(<BugCard bug={insect1} index={0} />, {
+        wrapper: AllContextsProvider,
+      });
+
+      const editButton = page.getByRole("button", {
+        name: buttonText,
+      });
+
+      expect(editButton).toBeInTheDocument();
     });
   });
 });
