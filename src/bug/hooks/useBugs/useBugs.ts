@@ -6,6 +6,7 @@ import {
   addBugActionCreator,
   deleteBugActionCreator,
   renderBugsInfoActionCreator,
+  toggleIsFavoriteActionCreator,
 } from "../../slice/bugSlice";
 import type { Bug, BugFormData } from "../../types";
 import useApp from "../../../hooks/useApp";
@@ -18,13 +19,14 @@ const useBugs = (): UseBugsStructure => {
   const bugsClient = useMemo(() => new BugsClient(), []);
 
   const getLoadingTimeOut = useCallback(
-    (): NodeJS.Timeout => setTimeout(() => setIsLoading(true), 200),
+    (delay: number): NodeJS.Timeout =>
+      setTimeout(() => setIsLoading(true), delay),
     [setIsLoading],
   );
 
   const loadBugsInfo = useCallback(
     async (pageNumber: number): Promise<void> => {
-      const timeOut = getLoadingTimeOut();
+      const timeOut = getLoadingTimeOut(200);
 
       try {
         const bugsInfo = await bugsClient.getBugsInfo(pageNumber);
@@ -33,7 +35,7 @@ const useBugs = (): UseBugsStructure => {
 
         dispatch(action);
       } catch {
-        const errorMessage = "Failed to fetch bugs";
+        const errorMessage = "Failed to obtain bugs";
 
         setModalConfig({
           showModal: true,
@@ -100,21 +102,56 @@ const useBugs = (): UseBugsStructure => {
   };
 
   const loadBugDetails = useCallback(
-    async (bugId: string): Promise<Bug> => {
-      const timeout = getLoadingTimeOut();
+    async (bugId: string): Promise<Bug | null> => {
+      const timeout = getLoadingTimeOut(200);
       let bug: Bug;
 
       try {
         bug = await bugsClient.getBugById(bugId);
+
+        return bug;
+      } catch {
+        const errorMessage = "Failed to obtain bug details";
+
+        setModalConfig({
+          isErrorModal: true,
+          message: errorMessage,
+          showModal: true,
+        });
       } finally {
         clearTimeout(timeout);
       }
 
       setIsLoading(false);
-      return bug;
+
+      return null;
     },
-    [bugsClient, setIsLoading, getLoadingTimeOut],
+    [bugsClient, setIsLoading, getLoadingTimeOut, setModalConfig],
   );
+
+  const toggleIsFavorite = async (bugId: string): Promise<Bug | null> => {
+    let bug: Bug;
+
+    try {
+      bug = await bugsClient.toggleIsFavorite(bugId);
+
+      const action = toggleIsFavoriteActionCreator(bug);
+
+      dispatch(action);
+
+      return bug;
+    } catch {
+      const errorMessage = "Failed to update bug's favorite status";
+
+      setModalConfig({
+        isErrorModal: true,
+        message: errorMessage,
+        showModal: true,
+      });
+    }
+
+    return null;
+  };
 
   return {
     bugsInfo,
@@ -122,6 +159,7 @@ const useBugs = (): UseBugsStructure => {
     addNewReport,
     deleteEntry,
     loadBugDetails,
+    toggleIsFavorite,
   };
 };
 
