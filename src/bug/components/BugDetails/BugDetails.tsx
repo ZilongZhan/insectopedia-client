@@ -12,7 +12,7 @@ import "./BugDetails.css";
 
 const BugDetails: React.FC = () => {
   const { isLoading } = useApp();
-  const { loadBugDetails, deleteEntry } = useBugs();
+  const { loadBugDetails, deleteEntry, toggleIsFavorite } = useBugs();
   const { bugId } = useParams<{ bugId: string }>();
   const [bug, setBug] = useState<Bug | null>(null);
   const navigate = useNavigate();
@@ -48,11 +48,20 @@ const BugDetails: React.FC = () => {
     scientificName,
     taxonomy,
   } = bug;
+  const isFavoriteButtonLabel = isFavorite
+    ? `Remove ${name} from favorites`
+    : `Add ${name} to favorites`;
 
   const handleDelete = (): void => {
     deleteEntry(id);
 
     navigate("/home");
+  };
+
+  const handleToggleIsFavorite = async (): Promise<void> => {
+    const bug = await toggleIsFavorite(id);
+
+    setBug(bug);
   };
 
   const [phylum, className, order] = taxonomy;
@@ -66,8 +75,12 @@ const BugDetails: React.FC = () => {
             {scientificName}
           </i>
         </div>
-        <Button modifier="favorite">
-          <StarSvg isFavorite={isFavorite} />
+        <Button
+          modifier="favorite"
+          aria-label={isFavoriteButtonLabel}
+          action={handleToggleIsFavorite}
+        >
+          <StarSvg isFavorite={isFavorite} aria-hidden={true} />
         </Button>
       </section>
       <img className="bug-image" src={imageUrl} alt={imageAlt} />

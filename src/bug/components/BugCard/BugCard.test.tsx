@@ -38,16 +38,16 @@ describe("Given the BugCard component", () => {
       expect(bugLatinName).toBeInTheDocument();
     });
 
-    test("Then it should show icon of a 5 pointed star", () => {
+    test("Then it should show a 'Add to favorites' button", () => {
       render(<BugCard bug={insect1} index={0} />, {
         wrapper: AllContextsProvider,
       });
 
-      const StarSvg = page.getByRole("img", {
-        name: /icon of a 5 pointed star/i,
+      const addToFavoritesButton = page.getByRole("button", {
+        name: new RegExp(`add ${insect1.name} to favorites`, "i"),
       });
 
-      expect(StarSvg).toBeInTheDocument();
+      expect(addToFavoritesButton).toBeInTheDocument();
     });
 
     test("Then it should show a 'Delete Insect One' button", () => {
