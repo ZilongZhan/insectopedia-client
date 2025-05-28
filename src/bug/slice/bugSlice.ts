@@ -47,6 +47,21 @@ const bugSlice = createSlice({
         },
       };
     },
+    toggleIsFavorite: (
+      { bugsInfo: { bugs, bugsTotal } },
+      {
+        payload: { id, isFavorite },
+      }: PayloadAction<{ id: string; isFavorite: boolean }>,
+    ): BugState => {
+      return {
+        bugsInfo: {
+          bugs: bugs.map((bug) =>
+            bug.id === id ? { ...bug, isFavorite } : bug,
+          ),
+          bugsTotal,
+        },
+      };
+    },
   },
 });
 
@@ -56,4 +71,5 @@ export const {
   renderBugsInfo: renderBugsInfoActionCreator,
   addBug: addBugActionCreator,
   deleteBug: deleteBugActionCreator,
+  toggleIsFavorite: toggleIsFavoriteActionCreator,
 } = bugSlice.actions;
