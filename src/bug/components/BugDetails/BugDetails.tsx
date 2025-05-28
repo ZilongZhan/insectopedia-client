@@ -80,7 +80,12 @@ const BugDetails: React.FC = () => {
           aria-label={isFavoriteButtonLabel}
           action={handleToggleIsFavorite}
         >
-          <StarSvg isFavorite={isFavorite} aria-hidden={true} />
+          <StarSvg
+            isFavorite={isFavorite}
+            aria-hidden={true}
+            width={20}
+            height={19}
+          />
         </Button>
       </section>
       <img className="bug-image" src={imageUrl} alt={imageAlt} />

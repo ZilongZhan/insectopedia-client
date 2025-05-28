@@ -4,6 +4,7 @@ import type { Bug } from "../../types";
 import StarSvg from "../../../ui/components/shared/StarSvg/StarSvg";
 import Button from "../../../ui/components/Button/Button";
 import DeleteButtonSvg from "../../../ui/components/shared/DeleteButtonSvg/DeleteButtonSvg";
+import EditSvg from "../../../ui/components/shared/EditSvg/EditSvg";
 
 import "./BugCard.css";
 
@@ -46,6 +47,9 @@ const BugCard: React.FC<BugCardProps> = ({
           </div>
         </Link>
         <div className="buttons-container">
+          <Button modifier="edit" aria-label={`Edit ${name} entry`}>
+            <EditSvg aria-hidden={true} />
+          </Button>
           <Button
             modifier="favorite"
             aria-label={isFavoriteButtonLabel}
