@@ -76,9 +76,11 @@ const useBugs = (): UseBugsStructure => {
         isErrorModal: true,
         message: errorMessage,
       });
-    } finally {
-      navigate("/home");
+
+      return;
     }
+
+    navigate("/home");
   };
 
   const deleteEntry = async (bugId: string): Promise<void> => {
@@ -103,9 +105,11 @@ const useBugs = (): UseBugsStructure => {
         showModal: true,
         message: modalMessage,
       });
-    } finally {
-      navigate("/home");
+
+      return;
     }
+
+    navigate("/home");
   };
 
   const loadBugDetails = useCallback(
@@ -185,9 +189,11 @@ const useBugs = (): UseBugsStructure => {
         isErrorModal: true,
         message: errorMessage,
       });
-    } finally {
-      navigate("/home");
+
+      return;
     }
+
+    navigate("/home");
   };
 
   return {

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 import BugsList from "../../components/BugsList/BugsList";
 import useBugs from "../../hooks/useBugs/useBugs";
 import Paginator from "../../components/Paginator/Paginator";
@@ -15,17 +15,12 @@ const HomePage: React.FC = () => {
     loadBugsInfo: renderBugsInfo,
   } = useBugs();
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
 
   const pageNumber = Number(searchParams.get("page")) || 1;
 
   useEffect(() => {
-    if (pageNumber > 1 && bugs.length === 0) {
-      navigate(`/home?page=${pageNumber - 1}`);
-    }
-
     renderBugsInfo(pageNumber);
-  }, [renderBugsInfo, pageNumber, bugs.length, navigate]);
+  }, [renderBugsInfo, pageNumber]);
 
   return (
     <>
