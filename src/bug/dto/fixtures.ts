@@ -8,9 +8,9 @@ export const insect1Dto: BugDto = {
   description: "Description of Insect One",
   isDangerous: false,
   isFavorite: false,
-  phylum: "PlaceholderPhylum",
-  className: "PlaceholderClass",
-  order: "PlaceholderOrder",
+  phylum: "Arthropoda",
+  className: "Insecta",
+  order: "Hemiptera",
 };
 
 export const insect2Dto: BugDto = {

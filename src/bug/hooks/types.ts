@@ -18,8 +18,8 @@ export interface UsePaginatorStructure {
 
 export interface UseFormStructure {
   bugFormData: BugFormData;
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  handleEdit: (event: React.FormEvent<HTMLFormElement>) => void;
+  handleAddBug: (event: React.FormEvent<HTMLFormElement>) => void;
+  handleEditBug: (event: React.FormEvent<HTMLFormElement>) => void;
   handleOnChange: (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
