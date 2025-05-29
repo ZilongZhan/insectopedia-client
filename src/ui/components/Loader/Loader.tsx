@@ -6,6 +6,8 @@ const Loader: React.FC = () => {
       <img
         src="/images/loader.webp"
         alt="A dung beetle rolling a ball of dung"
+        width={294}
+        height={220}
       />
       <span className="loader__text">Loading...</span>
     </div>
