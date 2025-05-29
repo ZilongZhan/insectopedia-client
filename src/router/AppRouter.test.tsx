@@ -41,7 +41,7 @@ describe("Given the AppRouter component", () => {
   });
 
   describe("When it renders on path /home", () => {
-    test("Then it should show 'Home' inside a heading", () => {
+    test("Then it should show 'Home' inside a heading", async () => {
       const expectedTitle = /home/i;
 
       render(
@@ -54,7 +54,7 @@ describe("Given the AppRouter component", () => {
 
       const pageTitle = page.getByRole("heading", { name: expectedTitle });
 
-      expect(pageTitle).toBeInTheDocument();
+      await expect.element(pageTitle).toBeInTheDocument();
     });
   });
 });

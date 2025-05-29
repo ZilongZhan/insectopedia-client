@@ -185,7 +185,7 @@ describe("Given the Layout component", () => {
 
         const pageTitle = page.getByRole("heading", { name: /details/i });
 
-        expect(pageTitle).toBeInTheDocument();
+        await expect.element(pageTitle).toBeInTheDocument();
       });
 
       test(`Then it should show a 'Add ${insect1.name} to favorites' button`, async () => {
@@ -365,7 +365,7 @@ describe("Given the Layout component", () => {
   });
 
   describe("When it renders on /report", () => {
-    test("Then it should show 'New Report' inside a heading", () => {
+    test("Then it should show 'New Report' inside a heading", async () => {
       const expectedTitle = /new report/i;
 
       render(
@@ -378,10 +378,10 @@ describe("Given the Layout component", () => {
 
       const pageTitle = page.getByRole("heading", { name: expectedTitle });
 
-      expect(pageTitle).toBeInTheDocument();
+      await expect.element(pageTitle).toBeInTheDocument();
     });
 
-    test("Then it should show a 'Common name' input", () => {
+    test("Then it should show a 'Common name' input", async () => {
       const inputLabel = /common name/i;
 
       render(
@@ -394,7 +394,7 @@ describe("Given the Layout component", () => {
 
       const nameInput = page.getByLabelText(inputLabel);
 
-      expect(nameInput).toBeInTheDocument();
+      await expect.element(nameInput).toBeInTheDocument();
     });
 
     test("Then it should show a 'Send report' button that is disabled", () => {
