@@ -9,8 +9,6 @@ import useApp from "../../../hooks/useApp";
 import GoBackSvg from "../../../ui/components/shared/GoBackSvg/GoBackSvg";
 
 const EditPage: React.FC = () => {
-  window.scrollTo({ top: 0, behavior: "instant" });
-
   const { isLoading } = useApp();
   const { loadBugDetails } = useBugs();
   const { bugId } = useParams<{ bugId: string }>();

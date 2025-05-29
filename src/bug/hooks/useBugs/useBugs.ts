@@ -45,9 +45,9 @@ const useBugs = (): UseBugsStructure => {
         });
       } finally {
         clearTimeout(timeOut);
-      }
 
-      setIsLoading(false);
+        setIsLoading(false);
+      }
     },
     [bugsClient, dispatch, setModalConfig, getLoadingTimeOut, setIsLoading],
   );
@@ -121,9 +121,9 @@ const useBugs = (): UseBugsStructure => {
         });
       } finally {
         clearTimeout(timeout);
-      }
 
-      setIsLoading(false);
+        setIsLoading(false);
+      }
 
       return null;
     },
