@@ -11,10 +11,12 @@ import {
 } from "../../slice/bugSlice";
 import type { Bug, BugFormData } from "../../types";
 import useApp from "../../../hooks/useApp";
+import { useNavigate } from "react-router";
 
 const useBugs = (): UseBugsStructure => {
   const bugsInfo = useAppSelector((state) => state.bugsReducer.bugsInfo);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { setIsLoading, setModalConfig } = useApp();
 
   const bugsClient = useMemo(() => new BugsClient(), []);
@@ -74,6 +76,8 @@ const useBugs = (): UseBugsStructure => {
         isErrorModal: true,
         message: errorMessage,
       });
+    } finally {
+      navigate("/home");
     }
   };
 
@@ -99,6 +103,8 @@ const useBugs = (): UseBugsStructure => {
         showModal: true,
         message: modalMessage,
       });
+    } finally {
+      navigate("/home");
     }
   };
 
@@ -179,6 +185,8 @@ const useBugs = (): UseBugsStructure => {
         isErrorModal: true,
         message: errorMessage,
       });
+    } finally {
+      navigate("/home");
     }
   };
 

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import BugsList from "../../components/BugsList/BugsList";
 import useBugs from "../../hooks/useBugs/useBugs";
 import Paginator from "../../components/Paginator/Paginator";
+import GrasshopperSvg from "../../../ui/components/shared/GrasshopperSvg/GrasshopperSvg";
 
 import "./HomePage.css";
-import GrasshopperSvg from "../../../ui/components/shared/GrasshopperSvg/GrasshopperSvg";
 
 const HomePage: React.FC = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -15,12 +15,17 @@ const HomePage: React.FC = () => {
     loadBugsInfo: renderBugsInfo,
   } = useBugs();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const pageNumber = Number(searchParams.get("page")) || 1;
 
   useEffect(() => {
+    if (pageNumber > 1 && bugs.length === 0) {
+      navigate(`/home?page=${pageNumber - 1}`);
+    }
+
     renderBugsInfo(pageNumber);
-  }, [renderBugsInfo, pageNumber]);
+  }, [renderBugsInfo, pageNumber, bugs.length, navigate]);
 
   return (
     <>

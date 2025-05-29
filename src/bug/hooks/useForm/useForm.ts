@@ -3,7 +3,6 @@ import type { BugFormData } from "../../types";
 import type { UseFormStructure } from "../types";
 import classifications from "../../data/classification";
 import useBugs from "../useBugs/useBugs";
-import { useNavigate } from "react-router";
 
 const initialBug: BugFormData = {
   name: "",
@@ -23,7 +22,6 @@ const useForm = (
 ): UseFormStructure => {
   const [bugFormData, setBugFormData] = useState<BugFormData>(initialData);
   const { addNewReport, updateReport } = useBugs();
-  const navigate = useNavigate();
 
   const handleOnChange = (
     event: React.ChangeEvent<
@@ -47,8 +45,6 @@ const useForm = (
     event.preventDefault();
 
     addNewReport(bugFormData);
-
-    navigate("/home");
   };
 
   const handleEdit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -59,8 +55,6 @@ const useForm = (
     }
 
     updateReport(bugId, bugFormData);
-
-    navigate("/home");
   };
 
   const isValidData =
