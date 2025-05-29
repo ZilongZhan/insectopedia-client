@@ -9,6 +9,7 @@ export interface UseBugsStructure {
   deleteEntry: (bugId: string) => Promise<void>;
   loadBugDetails: (bugId: string) => Promise<Bug | null>;
   toggleIsFavorite: (bugId: string) => Promise<Bug | null>;
+  updateReport: (bugId: string, bugFormData: BugFormData) => Promise<void>;
 }
 
 export interface UsePaginatorStructure {
@@ -18,6 +19,7 @@ export interface UsePaginatorStructure {
 export interface UseFormStructure {
   bugFormData: BugFormData;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  handleEdit: (event: React.FormEvent<HTMLFormElement>) => void;
   handleOnChange: (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement

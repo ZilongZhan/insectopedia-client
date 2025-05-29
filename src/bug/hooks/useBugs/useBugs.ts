@@ -5,6 +5,7 @@ import BugsClient from "../../client/BugsClient";
 import {
   addBugActionCreator,
   deleteBugActionCreator,
+  editBugActionCreator,
   renderBugsInfoActionCreator,
   toggleIsFavoriteActionCreator,
 } from "../../slice/bugSlice";
@@ -153,6 +154,34 @@ const useBugs = (): UseBugsStructure => {
     return null;
   };
 
+  const updateReport = async (
+    bugId: string,
+    bugFormData: BugFormData,
+  ): Promise<void> => {
+    try {
+      const bug = await bugsClient.editBug(bugId, bugFormData);
+      const modalMessage = "Report was updated successfully";
+
+      setModalConfig({
+        isErrorModal: false,
+        showModal: true,
+        message: modalMessage,
+      });
+
+      const action = editBugActionCreator(bug);
+
+      dispatch(action);
+    } catch {
+      const errorMessage = "Failed to update report";
+
+      setModalConfig({
+        showModal: true,
+        isErrorModal: true,
+        message: errorMessage,
+      });
+    }
+  };
+
   return {
     bugsInfo,
     loadBugsInfo,
@@ -160,6 +189,7 @@ const useBugs = (): UseBugsStructure => {
     deleteEntry,
     loadBugDetails,
     toggleIsFavorite,
+    updateReport,
   };
 };
 

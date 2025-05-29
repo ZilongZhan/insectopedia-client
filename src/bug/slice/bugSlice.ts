@@ -62,6 +62,17 @@ const bugSlice = createSlice({
         },
       };
     },
+    editBug: (
+      { bugsInfo: { bugs, bugsTotal } },
+      { payload: editedBug }: PayloadAction<Bug>,
+    ): BugState => {
+      return {
+        bugsInfo: {
+          bugs: bugs.map((bug) => (bug.id === editedBug.id ? editedBug : bug)),
+          bugsTotal,
+        },
+      };
+    },
   },
 });
 
@@ -72,4 +83,5 @@ export const {
   addBug: addBugActionCreator,
   deleteBug: deleteBugActionCreator,
   toggleIsFavorite: toggleIsFavoriteActionCreator,
+  editBug: editBugActionCreator,
 } = bugSlice.actions;
