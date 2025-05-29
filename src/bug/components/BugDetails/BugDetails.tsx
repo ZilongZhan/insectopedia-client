@@ -85,7 +85,13 @@ const BugDetails: React.FC = () => {
           />
         </Button>
       </section>
-      <img className="bug-image" src={imageUrl} alt={imageAlt} />
+      <img
+        className="bug-image"
+        src={imageUrl}
+        alt={imageAlt}
+        width={294}
+        height={165}
+      />
       <section className="bug-details__section bug-details__section--vertical">
         <h3 className="section__heading">Classification</h3>
         <p className="section__bug-description">{description}</p>
