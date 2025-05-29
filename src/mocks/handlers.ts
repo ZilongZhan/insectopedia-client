@@ -96,4 +96,17 @@ export const handlers = [
   http.patch(`${apiUrl}/bugs/${insect3Dto._id}`, () => {
     return HttpResponse.json(null, { status: 404 });
   }),
+
+  http.put(`${apiUrl}/bugs/${insect1Dto._id}`, () => {
+    const modifiedInsect1Dto: BugDto = {
+      ...insect1Dto,
+      commonName: "Insecto Uno",
+    };
+
+    return HttpResponse.json({ bug: modifiedInsect1Dto });
+  }),
+
+  http.put(`${apiUrl}/bugs/${insect2Dto._id}`, () => {
+    return HttpResponse.json(null, { status: 404 });
+  }),
 ];
