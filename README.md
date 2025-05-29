@@ -104,14 +104,12 @@ insectopedia-client/
 ├── public/                # Static assets
 ├── src/                   # Source code
 │   ├── bug/               # Bug-related features and components
-│   ├── components/        # Reusable components
 │   ├── data/              # Data and mock data
 │   ├── mocks/             # Mock service worker handlers
 │   ├── ui/                # Generic UI components
 │   ├── hooks/             # Custom React hooks
 │   ├── slice/             # Redux slices
-│   ├── store/             # Redux store setup
-│   └── styles/            # Global styles
+│   └── store/             # Redux store setup
 ├── coverage/              # Test coverage reports
 ├── .github/               # GitHub workflows
 ├── .husky/                # Git hooks
