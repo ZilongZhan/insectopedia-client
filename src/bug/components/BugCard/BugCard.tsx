@@ -40,6 +40,8 @@ const BugCard: React.FC<BugCardProps> = ({
             className="bug__image"
             src={imageUrl}
             alt={imageAlt}
+            width={158}
+            height={89}
           />
           <div className="info-container info-container--card">
             <h3 className="bug__name">{name}</h3>
