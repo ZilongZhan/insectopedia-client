@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import useBugs from "../../hooks/useBugs/useBugs";
 import type { Bug } from "../../types";
@@ -15,7 +15,6 @@ const BugDetails: React.FC = () => {
   const { loadBugDetails, deleteEntry, toggleIsFavorite } = useBugs();
   const { bugId } = useParams<{ bugId: string }>();
   const [bug, setBug] = useState<Bug | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!bugId) {
@@ -56,8 +55,6 @@ const BugDetails: React.FC = () => {
 
   const handleDelete = (): void => {
     deleteEntry(id);
-
-    navigate("/home");
   };
 
   const handleToggleIsFavorite = async (): Promise<void> => {
