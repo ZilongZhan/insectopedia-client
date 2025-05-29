@@ -94,6 +94,27 @@ class BugsClient implements BugsClientStructure {
 
     return mapBugDtoToBug(bugDto);
   };
+
+  public editBug = async (
+    bugId: string,
+    bugFormData: BugFormData,
+  ): Promise<Bug> => {
+    const response = await fetch(`${this.apiUrl}/bugs/${bugId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ bugData: bugFormData }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to edit bug");
+    }
+
+    const { bug: bugDto } = (await response.json()) as BugResponse;
+
+    return mapBugDtoToBug(bugDto);
+  };
 }
 
 export default BugsClient;
