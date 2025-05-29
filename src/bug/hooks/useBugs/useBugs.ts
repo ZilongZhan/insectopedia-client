@@ -19,9 +19,15 @@ const useBugs = (): UseBugsStructure => {
 
   const bugsClient = useMemo(() => new BugsClient(), []);
 
+  const getLoadingTimeOut = useCallback(
+    (delay: number): NodeJS.Timeout =>
+      setTimeout(() => setIsLoading(true), delay),
+    [setIsLoading],
+  );
+
   const loadBugsInfo = useCallback(
     async (pageNumber: number): Promise<void> => {
-      const timeOut = setTimeout(() => setIsLoading(true), 200);
+      const timeOut = getLoadingTimeOut(200);
 
       try {
         const bugsInfo = await bugsClient.getBugsInfo(pageNumber);
@@ -39,11 +45,11 @@ const useBugs = (): UseBugsStructure => {
         });
       } finally {
         clearTimeout(timeOut);
-      }
 
-      setIsLoading(false);
+        setIsLoading(false);
+      }
     },
-    [bugsClient, dispatch, setModalConfig, setIsLoading],
+    [bugsClient, dispatch, setModalConfig, getLoadingTimeOut, setIsLoading],
   );
 
   const addNewReport = async (bugFormData: BugFormData): Promise<void> => {
@@ -98,7 +104,7 @@ const useBugs = (): UseBugsStructure => {
 
   const loadBugDetails = useCallback(
     async (bugId: string): Promise<Bug | null> => {
-      const timeout = setTimeout(() => setIsLoading(true), 200);
+      const timeout = getLoadingTimeOut(200);
       let bug: Bug;
 
       try {
@@ -115,13 +121,13 @@ const useBugs = (): UseBugsStructure => {
         });
       } finally {
         clearTimeout(timeout);
-      }
 
-      setIsLoading(false);
+        setIsLoading(false);
+      }
 
       return null;
     },
-    [bugsClient, setIsLoading, setModalConfig],
+    [bugsClient, setIsLoading, getLoadingTimeOut, setModalConfig],
   );
 
   const toggleIsFavorite = async (bugId: string): Promise<Bug | null> => {
