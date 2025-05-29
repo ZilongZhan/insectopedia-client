@@ -246,6 +246,75 @@ describe("Given the Layout component", () => {
         });
       });
     });
+
+    describe(`And the user clicks the 'Edit ${insect1.name} entry`, () => {
+      test("Then it should show 'Update report' inside a heading", async () => {
+        render(
+          <AllContextsProvider
+            initialEntries={["/home"]}
+            customStore={setupStore()}
+          >
+            <AppRouter>
+              <Layout />
+            </AppRouter>
+          </AllContextsProvider>,
+        );
+
+        const editBugPageLink = page.getByRole("link", {
+          name: new RegExp(`edit ${insect1.name} entry`, "i"),
+        });
+
+        await user.click(editBugPageLink);
+
+        const pageTitle = page.getByRole("heading", { name: /update report/i });
+
+        await expect.element(pageTitle).toBeInTheDocument();
+      });
+
+      describe("And the user types 'Insecto Uno' into the 'Common name' input", () => {
+        describe("And the user clicks the 'Update Report' button", () => {
+          test("Then it should show 'Insecto Uno' inside a heading", async () => {
+            const userInput = "Insecto Uno";
+            const inputLabel = /common name/i;
+            const buttonText = /update report/i;
+
+            render(
+              <AllContextsProvider
+                initialEntries={["/home"]}
+                customStore={setupStore()}
+              >
+                <AppRouter>
+                  <Layout />
+                </AppRouter>
+              </AllContextsProvider>,
+            );
+
+            const editBugPageLink = page.getByRole("link", {
+              name: new RegExp(`edit ${insect1.name} entry`, "i"),
+            });
+
+            await user.click(editBugPageLink);
+
+            const nameInput = page.getByLabelText(inputLabel);
+
+            await user.clear(nameInput);
+            await user.type(nameInput, userInput);
+
+            const updateReportButton = page.getByRole("button", {
+              name: buttonText,
+            });
+
+            await user.click(updateReportButton);
+
+            const modalMessage = page.getByText(
+              /report was updated successfully/i,
+            );
+
+            await expect.element(modalMessage).toBeInTheDocument();
+          });
+        });
+      });
+    });
   });
 
   describe("When it renders on /home?page=2", () => {

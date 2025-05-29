@@ -10,6 +10,8 @@ describe("Given the deleteEntry function", () => {
         wrapper: AllContextsProvider,
       });
 
+      await result.current.loadBugsInfo(1);
+
       await result.current.deleteEntry(insect1.id);
 
       const bugs = result.current.bugsInfo.bugs;

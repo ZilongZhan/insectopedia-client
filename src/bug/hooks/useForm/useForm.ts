@@ -5,21 +5,24 @@ import classifications from "../../data/classification";
 import useBugs from "../useBugs/useBugs";
 import { useNavigate } from "react-router";
 
-const useForm = (): UseFormStructure => {
-  const initialData: BugFormData = {
-    name: "",
-    scientificName: "",
-    description: "",
-    imageUrl: "",
-    isFavorite: false,
-    isDangerous: false,
-    className: "",
-    order: "",
-    phylum: "",
-  };
+const initialBug: BugFormData = {
+  name: "",
+  scientificName: "",
+  description: "",
+  imageUrl: "",
+  isFavorite: false,
+  isDangerous: false,
+  className: "",
+  order: "",
+  phylum: "",
+};
 
+const useForm = (
+  bugId?: string,
+  initialData = initialBug,
+): UseFormStructure => {
   const [bugFormData, setBugFormData] = useState<BugFormData>(initialData);
-  const { addNewReport } = useBugs();
+  const { addNewReport, updateReport } = useBugs();
   const navigate = useNavigate();
 
   const handleOnChange = (
@@ -40,10 +43,22 @@ const useForm = (): UseFormStructure => {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleAddBug = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
     addNewReport(bugFormData);
+
+    navigate("/home");
+  };
+
+  const handleEdit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+
+    if (!bugId) {
+      throw new Error("Missing bug ID to edit bug");
+    }
+
+    updateReport(bugId, bugFormData);
 
     navigate("/home");
   };
@@ -70,7 +85,8 @@ const useForm = (): UseFormStructure => {
   return {
     bugFormData,
     handleOnChange,
-    handleSubmit,
+    handleAddBug: handleAddBug,
+    handleEditBug: handleEdit,
     isValidData,
     classOptions,
     orderOptions,

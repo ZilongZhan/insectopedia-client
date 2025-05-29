@@ -45,6 +45,10 @@
   color: #535353;
 }
 
+.bug__update-link {
+  font-size: 0;
+}
+
 .buttons-container {
   display: flex;
   padding: 7px;

@@ -23,6 +23,16 @@
   gap: 20px;
 }
 
+.bug-details__update-link {
+  background-color: #d9d9d9;
+  color: #535353;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 5px;
+  text-align: center;
+}
+
 .section__heading {
   margin: 0;
   font-size: 1rem;
