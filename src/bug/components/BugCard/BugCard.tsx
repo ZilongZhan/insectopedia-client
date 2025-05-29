@@ -47,9 +47,13 @@ const BugCard: React.FC<BugCardProps> = ({
           </div>
         </Link>
         <div className="buttons-container">
-          <Button modifier="edit" aria-label={`Edit ${name} entry`}>
+          <Link
+            className="bug__update-link"
+            to={`/update/${id}`}
+            aria-label={`Edit ${name} entry`}
+          >
             <EditSvg aria-hidden={true} />
-          </Button>
+          </Link>
           <Button
             modifier="favorite"
             aria-label={isFavoriteButtonLabel}

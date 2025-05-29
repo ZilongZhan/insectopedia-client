@@ -1,11 +1,17 @@
 import { v4 as uuid } from "uuid";
 import classifications from "../../data/classification";
 import useForm from "../../hooks/useForm/useForm";
+import Button from "../../../ui/components/Button/Button";
+import type { BugFormData } from "../../types";
 
 import "./BugForm.css";
-import Button from "../../../ui/components/Button/Button";
 
-const BugForm: React.FC = () => {
+interface BugFormProps {
+  id?: string;
+  bugFormData?: BugFormData;
+}
+
+const BugForm: React.FC<BugFormProps> = ({ id, bugFormData }) => {
   const {
     bugFormData: {
       className,
@@ -19,14 +25,18 @@ const BugForm: React.FC = () => {
       scientificName,
     },
     handleOnChange,
-    handleSubmit,
+    handleAddBug,
+    handleEditBug: handleEdit,
     isValidData,
     classOptions,
     orderOptions,
-  } = useForm();
+  } = useForm(id, bugFormData);
+
+  const handleOnSubmit = bugFormData ? handleEdit : handleAddBug;
+  const buttonText = bugFormData ? "Update report" : "Send report";
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleOnSubmit}>
       <div className="form__group">
         <label className="form__group__input-label" htmlFor="name">
           Common name:
@@ -161,7 +171,7 @@ const BugForm: React.FC = () => {
         </div>
       </div>
       <Button modifier="submit" type="submit" disabled={!isValidData}>
-        Send report
+        {buttonText}
       </Button>
     </form>
   );

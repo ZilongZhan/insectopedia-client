@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import useBugs from "../../hooks/useBugs/useBugs";
 import type { Bug } from "../../types";
@@ -48,6 +48,8 @@ const BugDetails: React.FC = () => {
     scientificName,
     taxonomy,
   } = bug;
+  const [phylum, className, order] = taxonomy;
+
   const isFavoriteButtonLabel = isFavorite
     ? `Remove ${name} from favorites`
     : `Add ${name} to favorites`;
@@ -63,8 +65,6 @@ const BugDetails: React.FC = () => {
 
     setBug(bug);
   };
-
-  const [phylum, className, order] = taxonomy;
 
   return (
     <article className="bug-details">
@@ -113,7 +113,9 @@ const BugDetails: React.FC = () => {
           <strong>Potentially dangerous</strong>
         </section>
       )}
-      <Button modifier="update">Update entry</Button>
+      <Link className="bug-details__update-link" to={`/update/${id}`}>
+        Update entry
+      </Link>
       <Button action={handleDelete} modifier="delete--big">
         Delete entry
       </Button>

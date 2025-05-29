@@ -64,15 +64,15 @@ describe("Given the BugCard component", () => {
       expect(deleteButton).toBeInTheDocument();
     });
 
-    test("Then it should show a 'Edit Insect One' button", () => {
-      const buttonText = new RegExp(`edit ${insect1.name}`, "i");
+    test("Then it should show a 'Edit Insect One' link", () => {
+      const linkText = new RegExp(`edit ${insect1.name}`, "i");
 
       render(<BugCard bug={insect1} index={0} />, {
         wrapper: AllContextsProvider,
       });
 
-      const editButton = page.getByRole("button", {
-        name: buttonText,
+      const editButton = page.getByRole("link", {
+        name: linkText,
       });
 
       expect(editButton).toBeInTheDocument();
