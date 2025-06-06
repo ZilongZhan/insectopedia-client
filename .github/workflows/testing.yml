@@ -4,6 +4,7 @@ on: push
 
 env:
   VITE_API_URL: ${{ vars.VITE_API_URL}}
+  CYPRESS_BASE_URL: ${{ vars.CYPRESS_BASE_URL }}
 
 jobs:
   test:
