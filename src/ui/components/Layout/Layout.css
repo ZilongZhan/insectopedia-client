@@ -4,6 +4,8 @@
   min-height: 100vh;
   padding-bottom: 61.22px;
   position: relative;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .main-content {
@@ -12,4 +14,20 @@
   align-items: center;
   padding: 20px 10px;
   gap: 20px;
+  justify-content: center;
+}
+
+.title-container {
+  display: flex;
+  gap: 10px;
+}
+
+.title-container__page-title {
+  margin: 0;
+}
+
+.title-container__icon {
+  fill: var(--accent-color);
+  width: 50px;
+  height: auto;
 }
