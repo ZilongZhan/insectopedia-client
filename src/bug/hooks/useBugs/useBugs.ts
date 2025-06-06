@@ -68,8 +68,9 @@ const useBugs = (): UseBugsStructure => {
       const action = addBugActionCreator(bug);
 
       dispatch(action);
-    } catch {
-      const errorMessage = "Failed to send report";
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to send report";
 
       setModalConfig({
         showModal: true,
@@ -181,8 +182,9 @@ const useBugs = (): UseBugsStructure => {
       const action = editBugActionCreator(bug);
 
       dispatch(action);
-    } catch {
-      const errorMessage = "Failed to update report";
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to send report";
 
       setModalConfig({
         showModal: true,

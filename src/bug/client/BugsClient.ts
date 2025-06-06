@@ -1,7 +1,7 @@
 import { mapBugDtoToBug, mapBugsDtoToBugs } from "../dto/mappers";
 import type { BugsInfoDto } from "../dto/types";
 import type { Bug, BugFormData, BugsInfo } from "../types";
-import type { BugResponse, BugsClientStructure } from "./types";
+import type { BugResponse, BugsClientStructure, ErrorResponse } from "./types";
 
 class BugsClient implements BugsClientStructure {
   private readonly apiUrl = import.meta.env.VITE_API_URL;
@@ -47,7 +47,9 @@ class BugsClient implements BugsClientStructure {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to add new bug");
+      const { error } = (await response.json()) as ErrorResponse;
+
+      throw new Error(error);
     }
 
     const { bug: bugDto } = (await response.json()) as BugResponse;
