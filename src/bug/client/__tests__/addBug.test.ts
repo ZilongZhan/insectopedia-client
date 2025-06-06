@@ -19,8 +19,8 @@ describe("Given the addBug method of BugsClient", () => {
   });
 
   describe("When it receives Insect Two form data which already exists", () => {
-    test("Then it should throw error 'Failed to add new bug'", async () => {
-      const expectedErrorMessage = "Failed to add new bug";
+    test(`Then it should throw error 'Bug with name '${insect2FormData.name}' already exists'`, async () => {
+      const expectedErrorMessage = `Bug with name '${insect2FormData.name}' already exists`;
 
       const bugsClient = new BugsClient();
 
@@ -33,8 +33,9 @@ describe("Given the addBug method of BugsClient", () => {
   });
 
   describe("When it receives Insect Three form data with invalid name 'A'", () => {
-    test("Then it should throw error 'Failed to add new bug'", async () => {
-      const expectedErrorMessage = "Failed to add new bug";
+    test("Then it should throw error 'Bug validation failed: commonName: Minimum 3 characters required'", async () => {
+      const expectedErrorMessage =
+        "Bug validation failed: commonName: Minimum 3 characters required";
       const invalidName = "A";
 
       const insect3FormDataWithInvalidName: BugFormData = {

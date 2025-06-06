@@ -57,11 +57,20 @@ export const handlers = [
     };
 
     if (bugData.name === insect2Dto.commonName) {
-      return HttpResponse.json(null, { status: 409 });
+      return HttpResponse.json(
+        { error: `Bug with name '${insect2Dto.commonName}' already exists` },
+        { status: 409 },
+      );
     }
 
     if (bugData.name === invalidBugName) {
-      return HttpResponse.json(null, { status: 400 });
+      return HttpResponse.json(
+        {
+          error:
+            "Bug validation failed: commonName: Minimum 3 characters required",
+        },
+        { status: 400 },
+      );
     }
 
     return HttpResponse.json({ bug: insect1Dto }, { status: 200 });
