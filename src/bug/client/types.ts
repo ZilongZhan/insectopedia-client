@@ -13,3 +13,7 @@ export interface BugsClientStructure {
 export interface BugResponse {
   bug: BugDto;
 }
+
+export interface ErrorResponse {
+  error: string;
+}
