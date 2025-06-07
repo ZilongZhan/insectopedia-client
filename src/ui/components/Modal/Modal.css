@@ -13,10 +13,10 @@
   gap: 10px;
   background-color: var(--background-color);
   padding: 40px 20px;
-  position: fixed;
   top: 30%;
   border-radius: 2px;
-  width: 80vw;
+  position: absolute;
+  width: 80%;
 }
 
 .modal__message {
